@@ -1,0 +1,45 @@
+name: pull-requests
+
+on:
+  pull_request:
+    branches:
+      - development
+      - RC
+      - master
+
+jobs:
+  test-pr:
+    name: Test Pull Request
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13' # renovate: datasource=github-tags depName=python
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip  
+        pip install ansible==10.2.0 # renovate: datasource=pypi
+        pip install ansible-lint==24.7.0 # renovate: datasource=pypi
+
+    - name: Syntax Check
+      run: |
+        ansible-playbook site.yml --syntax-check
+
+    - name: Ansible lint
+      run: |
+        ansible-lint -v roles/netbootxyz/tasks
+
+  build-pr:
+    name: Build Pull Request
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+
+    - name: Build PR release
+      run: |
+        ./script/build_release pr

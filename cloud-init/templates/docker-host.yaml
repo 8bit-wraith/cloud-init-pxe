@@ -1,0 +1,132 @@
+#cloud-config
+# Docker Host cloud-init configuration template
+
+# Update and upgrade packages
+package_update: true
+package_upgrade: true
+
+# Install required packages
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+  - python3-pip
+  - git
+  - htop
+  - iotop
+  - vim
+
+# Add Docker repository and install
+runcmd:
+  # Add Docker GPG key
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  
+  # Add Docker repository
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+  # Install Docker
+  - apt-get update
+  - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  
+  # Configure Docker
+  - systemctl enable docker
+  - systemctl start docker
+  
+  # Install Docker Compose standalone (for compatibility)
+  - curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - chmod +x /usr/local/bin/docker-compose
+  
+  # Add docker user to docker group
+  - usermod -aG docker docker || true
+  
+  # Configure Docker daemon
+  - |
+    cat > /etc/docker/daemon.json <<EOF
+    {
+      "log-driver": "json-file",
+      "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+      },
+      "default-ulimits": {
+        "nofile": {
+          "Name": "nofile",
+          "Hard": 64000,
+          "Soft": 64000
+        }
+      }
+    }
+    EOF
+  
+  # Restart Docker with new configuration
+  - systemctl restart docker
+  
+  # Install ctop for container monitoring
+  - wget https://github.com/bcicen/ctop/releases/latest/download/ctop-linux-amd64 -O /usr/local/bin/ctop
+  - chmod +x /usr/local/bin/ctop
+  
+  # Install lazydocker
+  - curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+
+# Create users
+users:
+  - name: docker
+    groups: sudo, docker
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... # Replace with your SSH public key
+
+# Configure system
+write_files:
+  - path: /etc/sysctl.d/99-docker.conf
+    content: |
+      # Docker optimization
+      net.bridge.bridge-nf-call-iptables = 1
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.ipv4.ip_forward = 1
+      vm.max_map_count = 262144
+      fs.file-max = 65536
+  
+  - path: /etc/security/limits.d/docker.conf
+    content: |
+      * soft nofile 65536
+      * hard nofile 65536
+      * soft nproc 32768
+      * hard nproc 32768
+  
+  - path: /home/docker/docker-compose.yml
+    content: |
+      version: '3.8'
+      
+      services:
+        portainer:
+          image: portainer/portainer-ce:latest
+          container_name: portainer
+          restart: unless-stopped
+          ports:
+            - "9000:9000"
+            - "9443:9443"
+          volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - portainer_data:/data
+      
+      volumes:
+        portainer_data:
+    owner: docker:docker
+    permissions: '0644'
+
+# Configure SSH
+ssh_pwauth: false
+disable_root: true
+
+# Set timezone
+timezone: UTC
+
+# Set hostname
+hostname: docker-host
+
+# Final message
+final_message: "Docker host setup complete! Portainer is available at https://$IP:9443" 

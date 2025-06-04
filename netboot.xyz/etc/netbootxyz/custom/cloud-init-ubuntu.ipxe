@@ -1,0 +1,40 @@
+#!ipxe
+###
+### Ubuntu with Cloud-Init Support
+###
+
+:cloud-init-ubuntu
+set ubuntu_version 22.04
+set arch amd64
+menu Ubuntu ${ubuntu_version} with Cloud-Init
+item --gap Cloud-Init Configuration:
+item ubuntu-basic ${space} Ubuntu ${ubuntu_version} - Basic Setup
+item ubuntu-k8s ${space} Ubuntu ${ubuntu_version} - Kubernetes Node
+item ubuntu-custom ${space} Ubuntu ${ubuntu_version} - Custom Config
+item --gap
+item goback ${space} Back to previous menu
+choose --default ubuntu-basic --timeout 30000 target && goto ${target}
+
+:ubuntu-basic
+set cloud_init_config basic-setup.yaml
+goto ubuntu-boot
+
+:ubuntu-k8s
+set cloud_init_config kubernetes-node.yaml
+goto ubuntu-boot
+
+:ubuntu-custom
+echo -n Enter cloud-init config filename: && read cloud_init_config
+goto ubuntu-boot
+
+:ubuntu-boot
+echo Booting Ubuntu ${ubuntu_version} with cloud-init: ${cloud_init_config}
+set base_url http://archive.ubuntu.com/ubuntu/dists/jammy/main/installer-${arch}/current/legacy-images/netboot/ubuntu-installer/${arch}
+kernel ${base_url}/linux
+initrd ${base_url}/initrd.gz
+# Add cloud-init parameters
+imgargs linux auto=true priority=critical url=http://${next-server}/preseed.cfg cloud-config-url=http://${next-server}/cloud-init/user-data/${cloud_init_config} ds=nocloud-net;s=http://${next-server}/cloud-init/
+boot || goto cloud-init-ubuntu
+
+:goback
+chain menu.ipxe || goto cloud-init-ubuntu 

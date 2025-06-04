@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <title>netboot.xyz Cloud-Init Studio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Modern CSS Framework -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+  
+  <style>
+    :root {
+      --primary: #00d4aa;
+      --primary-hover: #00b894;
+      --background: #0a0e27;
+      --card-background: #151932;
+      --text: #e4e6eb;
+      --text-muted: #8b92a1;
+      --border: #2a2e48;
+      --success: #00d4aa;
+      --danger: #ff4757;
+      --warning: #ffa502;
+      --info: #5f9fff;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .app-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background-color: var(--card-background);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .sidebar-nav {
+      padding: 1rem 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--text);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+      background-color: rgba(0, 212, 170, 0.1);
+      border-left-color: var(--primary);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      padding: 1rem 2rem;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .content-area {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    /* Split View */
+    .split-view {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 2rem;
+      height: 100%;
+    }
+
+    .config-list-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--card-background);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .config-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .config-item {
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid transparent;
+    }
+
+    .config-item:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--border);
+    }
+
+    .config-item.active {
+      background-color: rgba(0, 212, 170, 0.1);
+      border-color: var(--primary);
+    }
+
+    .config-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .config-icon {
+      width: 36px;
+      height: 36px;
+      background-color: rgba(0, 212, 170, 0.2);
+      color: var(--primary);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .config-details h4 {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .config-details p {
+      margin: 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Editor Section */
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .editor-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--card-background);
+      border-radius: 0.75rem 0.75rem 0 0;
+      overflow: hidden;
+    }
+
+    .tab {
+      padding: 1rem 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .tab:hover {
+      color: var(--text);
+    }
+
+    .tab.active {
+      color: var(--primary);
+      background-color: rgba(0, 212, 170, 0.1);
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .editor-container {
+      flex: 1;
+      background-color: var(--card-background);
+      border-radius: 0 0 0.75rem 0.75rem;
+      overflow: hidden;
+    }
+
+    .editor-wrapper {
+      height: 100%;
+      display: none;
+    }
+
+    .editor-wrapper.active {
+      display: block;
+    }
+
+    .CodeMirror {
+      height: 100%;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+    }
+
+    .markdown-preview {
+      padding: 2rem;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    .markdown-preview h1, .markdown-preview h2, .markdown-preview h3 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .markdown-preview pre {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .markdown-preview code {
+      background-color: rgba(0, 212, 170, 0.1);
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      color: var(--primary);
+    }
+
+    .markdown-preview pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* URL Display */
+    .url-display {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background-color: rgba(0, 212, 170, 0.05);
+      border: 1px solid var(--primary);
+      border-radius: 0.5rem;
+    }
+
+    .url-group {
+      margin-bottom: 1rem;
+    }
+
+    .url-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .url-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .url-input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .url-input {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 0.375rem;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 0.875rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: var(--card-background);
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .split-view {
+        grid-template-columns: 1fr;
+      }
+
+      .config-list-section {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="<%= baseurl %>" class="logo">
+          <i class="fas fa-network-wired"></i>
+          <span class="logo-text">netboot.xyz</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="<%= baseurl %>" class="nav-item">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="<%= baseurl %>#config" class="nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Configuration</span>
+        </a>
+        <a href="<%= baseurl %>cloud-init" class="nav-item active">
+          <i class="fas fa-cloud"></i>
+          <span>Cloud-Init Studio</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showAbout(); return false;">
+          <i class="fas fa-info-circle"></i>
+          <span>About</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <h1 class="page-title">Cloud-Init Studio</h1>
+        <div class="topbar-actions">
+          <button class="btn btn-secondary" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i>
+            <span>Theme</span>
+          </button>
+          <button class="btn btn-primary" onclick="createNewConfig()">
+            <i class="fas fa-plus"></i>
+            <span>New Config</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <div class="split-view">
+          <!-- Config List -->
+          <div class="config-list-section">
+            <!-- Configurations Card -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Configurations</h3>
+                <button class="btn btn-sm btn-secondary" onclick="refreshConfigs()">
+                  <i class="fas fa-sync"></i>
+                </button>
+              </div>
+              <div class="card-body">
+                <div id="config-list" class="config-list">
+                  <!-- Configs will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Templates Card -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Templates</h3>
+              </div>
+              <div class="card-body">
+                <div id="template-list" class="config-list">
+                  <!-- Templates will be loaded here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editor Section -->
+          <div class="editor-section">
+            <div id="editor-panel" style="display: none;">
+              <!-- Editor Tabs -->
+              <div class="editor-tabs">
+                <button class="tab active" onclick="switchTab('yaml')">
+                  <i class="fas fa-code"></i>
+                  YAML Editor
+                </button>
+                <button class="tab" onclick="switchTab('docs')">
+                  <i class="fas fa-book"></i>
+                  Documentation
+                </button>
+                <button class="tab" onclick="switchTab('preview')">
+                  <i class="fas fa-eye"></i>
+                  Preview
+                </button>
+                <div style="flex: 1;"></div>
+                <button class="tab" onclick="saveConfig()" style="color: var(--success);">
+                  <i class="fas fa-save"></i>
+                  Save
+                </button>
+                <button class="tab" onclick="deleteConfig()" style="color: var(--danger);">
+                  <i class="fas fa-trash"></i>
+                  Delete
+                </button>
+              </div>
+
+              <!-- Editor Container -->
+              <div class="editor-container">
+                <!-- YAML Editor -->
+                <div id="yaml-editor" class="editor-wrapper active">
+                  <textarea id="config-editor"></textarea>
+                </div>
+
+                <!-- Documentation Editor -->
+                <div id="docs-editor" class="editor-wrapper">
+                  <textarea id="docs-markdown"></textarea>
+                </div>
+
+                <!-- Preview -->
+                <div id="preview" class="editor-wrapper">
+                  <div class="markdown-preview" id="markdown-preview">
+                    <!-- Markdown preview will be rendered here -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- URL Display -->
+              <div class="url-display">
+                <div class="url-group">
+                  <div class="url-label">User-data URL</div>
+                  <div class="url-input-group">
+                    <input type="text" class="url-input" id="userdata-url" readonly>
+                    <button class="btn btn-secondary" onclick="copyUrl('userdata-url')">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="url-group">
+                  <div class="url-label">Meta-data URL</div>
+                  <div class="url-input-group">
+                    <input type="text" class="url-input" id="metadata-url" readonly>
+                    <button class="btn btn-secondary" onclick="copyUrl('metadata-url')">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state">
+              <i class="fas fa-cloud"></i>
+              <h2>Welcome to Cloud-Init Studio</h2>
+              <p>Select a configuration to edit or create a new one to get started</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Config Modal -->
+  <div class="modal" id="newConfigModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Configuration</h2>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Configuration Name</label>
+          <input type="text" class="form-control" id="new-config-name" placeholder="my-config.yaml">
+        </div>
+        <div class="form-group">
+          <label>Start from Template</label>
+          <select class="form-control" id="template-select">
+            <option value="">Blank Configuration</option>
+            <!-- Templates will be loaded here -->
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="createConfig()">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="<%= baseurl %>public/vendor/js/jquery.min.js"></script>
+  <script src="<%= baseurl %>public/vendor/js/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/yaml/yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="<%= baseurl %>public/cloud-init-modern.js"></script>
+</body>
+</html> 

@@ -1,0 +1,65 @@
+#cloud-config
+# Basic cloud-init configuration template
+
+# Update and upgrade packages
+package_update: true
+package_upgrade: true
+
+# Install essential packages
+packages:
+  - curl
+  - wget
+  - git
+  - htop
+  - vim
+  - tmux
+  - build-essential
+  - python3
+  - py3-pip
+  - py3-yaml
+  - tftpd-hpa
+  - dnsmasq
+  - nginx
+  - nodejs
+  - npm
+  - supervisor
+  - syslog-ng
+
+# Create users
+users:
+  - name: admin
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... # Replace with your SSH public key
+
+# Configure SSH
+ssh_pwauth: false
+disable_root: true
+
+# Set timezone
+timezone: UTC
+
+# Run commands on first boot
+runcmd:
+  - echo "Cloud-init setup complete" > /var/log/cloud-init-setup.log
+  - date >> /var/log/cloud-init-setup.log
+
+# Configure system
+system_info:
+  default_user:
+    name: ubuntu
+    lock_passwd: true
+    gecos: Ubuntu
+    groups: [adm, audio, cdrom, dialout, dip, floppy, lxd, netdev, plugdev, sudo, video]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+
+# Write files
+write_files:
+  - path: /etc/motd
+    content: |
+      Welcome to your cloud-init configured server!
+      This server was configured using netboot.xyz with cloud-init.
+    permissions: '0644' 

@@ -1,0 +1,1 @@
+2025/06/04 06:57:39 [error] 42#42: *1 open() "/assets/favicon.ico" failed (2: No such file or directory), client: 192.168.65.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost:8082", referrer: "http://localhost:8082/"

@@ -1,0 +1,4 @@
+192.168.65.1 - - [04/Jun/2025:06:57:39 +0000] "GET / HTTP/1.1" 200 124 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+192.168.65.1 - - [04/Jun/2025:06:57:39 +0000] "GET /favicon.ico HTTP/1.1" 404 188 "http://localhost:8082/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+192.168.65.1 - - [04/Jun/2025:07:06:11 +0000] "GET / HTTP/1.1" 200 124 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+192.168.65.1 - - [04/Jun/2025:07:24:36 +0000] "GET / HTTP/1.1" 200 124 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"

@@ -1,0 +1,50 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+  repository_dispatch:
+    types: [build]
+  workflow_dispatch:
+jobs:
+  release:
+    name: Build and deploy site
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download external project files
+        run: |
+          wget https://raw.githubusercontent.com/netbootxyz/netboot.xyz/master/CHANGELOG.md -O external/changelog.md
+          wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/README.md -O external/build-automation.md
+          wget https://raw.githubusercontent.com/netbootxyz/netboot.xyz/master/CONTRIBUTING.md -O external/contributing.md
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build static site
+        run: yarn run build
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_DOCS }}
+          aws-region: ${{ secrets.AWS_ACCESS_REGION }}
+          
+      - name: Deploy site to bucket
+        run: |
+          aws s3 sync --no-progress --acl public-read build s3://${{ secrets.BUCKET_SITE }}
+
+      - name: Invalidate Cloudfront
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID_SITE }} --paths "/*"
