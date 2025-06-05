@@ -56,7 +56,7 @@ Documentation improvements are always welcome! This includes:
 
 ### 🔧 Contributing Code
 
-#### Areas We Need Help With:
+#### Areas We Need Help With
 
 1. **UI/UX Improvements**: Making the interface even more intuitive
 2. **Cloud-Init Templates**: Adding more pre-built templates
@@ -130,6 +130,7 @@ Scope: ui, api, cloud-init, docker, docs
 ```
 
 Examples:
+
 - `feat(ui): add configuration import/export`
 - `fix(cloud-init): resolve yaml parsing error`
 - `docs: update deployment instructions`
@@ -199,6 +200,7 @@ Releases are automated via GitHub Actions when a tag is pushed.
 ## Recognition
 
 Contributors will be recognized in:
+
 - The CHANGELOG.md file
 - GitHub releases
 - Project documentation
