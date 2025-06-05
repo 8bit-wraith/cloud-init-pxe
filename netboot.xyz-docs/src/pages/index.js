@@ -14,10 +14,10 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
       <ThemedImage
-        alt="netboot.xyz logo"
+        alt="cloud-init-pxe.com logo"
         sources={{
-          light: useBaseUrl('img/nbxyz-transparent-logo-white.png'),
-          dark: useBaseUrl('img/nbxyz-transparent-logo-black.png'),
+          light: useBaseUrl('img/cipxe-transparent-logo-white.png'),
+          dark: useBaseUrl('img/cipxe-transparent-logo-black.png'),
         }}
         />
         <p className="hero__subtitle">{siteConfig.tagline}</p>
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <Layout
       title={`Your favorite operating systems in one place!`}
-      description="netboot.xyz enables you to PXE boot many Operating System installers and utilities from a simple to use menu powered by the iPXE project.">
+      description="cloud-init-pxe.com enables you to PXE boot many Operating System installers and utilities from a simple to use menu powered by the iPXE project.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

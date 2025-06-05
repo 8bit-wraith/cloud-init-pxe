@@ -9,17 +9,17 @@ const ThemedImage = lazy(() => import("@theme/ThemedImage"));
 const FeatureList = [
   {
     title: "Simple to Use",
-    Svg: ["./img/nbxyz-user.svg", "./img/nbxyz-user.svg"],
+    Svg: ["./img/cipxe-user.svg", "./img/cipxe-user.svg"],
     description: (
       <>
-        netboot.xyz enables you to boot into many types of operating systems
+        cloud-init-pxe.com enables you to boot into many types of operating systems
         using lightweight tooling to get you up and running as soon as possible.
       </>
     ),
   },
   {
     title: "Evaluate, Install, Rescue",
-    Svg: ["./img/nbxyz-laptop.gif", "./img/nbxyz-laptop.gif"],
+    Svg: ["./img/cipxe-laptop.gif", "./img/cipxe-laptop.gif"],
     description: (
       <>
         Discover new operating systems without having to download and rewrite
@@ -33,7 +33,7 @@ const FeatureList = [
     Svg: ["./img/ipxechip.svg", "./img/ipxechip.svg"],
     description: (
       <>
-        netboot.xyz uses the iPXE project to enable you to provision, rescue or
+        cloud-init-pxe.com uses the iPXE project to enable you to provision, rescue or
         load into a live boot environment leveraging the Preboot Execution
         Environment (PXE) on most systems.
       </>

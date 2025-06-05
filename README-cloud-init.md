@@ -1,17 +1,19 @@
-# netboot.xyz Studio - Modern PXE Boot & Cloud-Init Management
+# Cloud-Init PXE Studio - Modern PXE Boot & Cloud-Init Management
 
-A complete reimagining of netboot.xyz with a stunning modern interface that unifies PXE boot management and cloud-init configuration in one beautiful application. Say goodbye to dated interfaces and hello to a professional, intuitive experience.
+A complete reimagining of the original netboot.xyz with a stunning modern interface that unifies PXE boot management and cloud-init configuration in one beautiful application. Say goodbye to dated interfaces and hello to a professional, intuitive experience.
 
 ## ✨ Key Features
 
 ### 🎨 Beautiful Modern Interface
+
 - **Unified Dashboard** - All your PXE boot and cloud-init tools in one stunning interface
 - **Dark/Light Theme** - Professional dark theme by default, with a clean light mode
 - **Responsive Design** - Perfect on desktop, tablet, and mobile devices
 - **Smart Navigation** - Collapsible sidebar that adapts to your workflow
 
 ### 🚀 Core Functionality
-- **PXE Boot Management** - Full netboot.xyz functionality with a modern twist
+
+- **PXE Boot Management** - Full Cloud-Init PXE functionality with a modern twist
 - **Cloud-Init Studio** - Create, edit, and manage cloud-init configurations
 - **Boot Menu Editor** - Customize iPXE scripts with syntax highlighting
 - **Asset Management** - Download and organize boot images and ISOs
@@ -19,6 +21,7 @@ A complete reimagining of netboot.xyz with a stunning modern interface that unif
 - **Real-time Monitoring** - System stats, version tracking, and health checks
 
 ### 💡 Developer Experience
+
 - **CodeMirror Integration** - Professional code editing for YAML and iPXE
 - **WebSocket Updates** - Real-time synchronization across all features
 - **Toast Notifications** - Non-intrusive feedback for every action
@@ -30,29 +33,31 @@ A complete reimagining of netboot.xyz with a stunning modern interface that unif
 ### Using Docker Compose (Recommended)
 
 1. Clone this repository:
+
 ```bash
 git clone <your-repo>
 cd cloud-init-pxe
 ```
 
 2. Build and run the container:
+
 ```bash
 docker-compose -f docker-compose-cloud-init.yml up -d
 ```
 
 3. Access the web interfaces:
-   - Main netboot.xyz interface: http://localhost:3000
-   - Cloud-Init manager: http://localhost:3000/cloud-init
+   - Main Cloud-Init PXE interface: <http://localhost:3000>
+   - Cloud-Init manager: <http://localhost:3000/cloud-init>
 
 ### Using Docker CLI
 
 ```bash
 # Build the image
-docker build -f Dockerfile.cloud-init -t netbootxyz-cloud-init:latest .
+docker build -f Dockerfile.cloud-init -t cloudinitpxe:latest .
 
 # Run the container
 docker run -d \
-  --name netbootxyz-cloud-init \
+  --name cloudinitpxe \
   -p 3000:3000 \
   -p 69:69/udp \
   -p 8080:80 \
@@ -60,14 +65,14 @@ docker run -d \
   -v $(pwd)/assets:/assets \
   -v $(pwd)/cloud-init-data:/cloud-init \
   --cap-add NET_ADMIN \
-  netbootxyz-cloud-init:latest
+  cloudinitpxe:latest
 ```
 
 ## Cloud-Init Configuration
 
 ### Web Interface
 
-1. Navigate to http://localhost:3000/cloud-init
+1. Navigate to <http://localhost:3000/cloud-init>
 2. Create new configurations or edit existing ones
 3. Use templates for common setups:
    - `basic-setup.yaml` - Basic server configuration
@@ -76,6 +81,7 @@ docker run -d \
 ### Configuration URLs
 
 Once you create a configuration, it will be available at:
+
 - User-data: `http://<server-ip>:8080/cloud-init/user-data/<config-name>.yaml`
 - Meta-data: `http://<server-ip>:8080/cloud-init/meta-data`
 
@@ -89,6 +95,7 @@ The container includes a custom iPXE menu for Ubuntu with cloud-init support. To
 4. Choose your configuration or enter a custom one
 
 Example iPXE script integration:
+
 ```ipxe
 #!ipxe
 # Boot Ubuntu with cloud-init
@@ -101,8 +108,8 @@ boot
 
 ## Directory Structure
 
-```
-/config              # netboot.xyz configurations
+```bash
+/config              # Cloud-Init PXE configurations
   /menus             # iPXE menus
   /nginx             # Nginx configuration
 /assets              # Downloaded boot assets
@@ -125,7 +132,7 @@ packages:
 
 ## Environment Variables
 
-- `MENU_VERSION` - netboot.xyz menu version (default: latest)
+- `MENU_VERSION` - Cloud-Init PXE menu version (default: latest)
 - `NGINX_PORT` - Nginx port (default: 80)
 - `WEB_APP_PORT` - Web app port (default: 3000)
 - `TFTPD_OPTS` - Additional TFTP server options
@@ -140,14 +147,14 @@ packages:
 
 Configure your DHCP server to point to this server:
 
-```
+```java
 # ISC DHCP example
 next-server <server-ip>;
-filename "netboot.xyz.kpxe";
+filename "cloud-init-pxe.kpxe";
 
 # For UEFI systems
 if option arch = 00:07 {
-  filename "netboot.xyz.efi";
+  filename "cloud-init-pxe.efi";
 }
 ```
 
@@ -171,4 +178,4 @@ Feel free to submit issues and pull requests for improvements.
 
 ## License
 
-This project follows the same license as netboot.xyz. 
+This project follows the same license as the original netboot.xyz project.
