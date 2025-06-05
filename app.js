@@ -1,5 +1,5 @@
-// netboot.xyz
-// Main Node.js app
+// cloud-init-pxe.com
+// Main Node.js app - Based on the excellent netboot.xyz project but rebranded for cloud-init-pxe.com
 
 var baseurl = process.env.SUBFOLDER || '/';
 var app = require('express')();
@@ -44,9 +44,9 @@ function disablesigs(){
 baserouter.get("/", function (req, res) {
   res.render(__dirname + '/public/index.ejs', {baseurl: baseurl});
 });
-baserouter.get("/netbootxyz-web.js", function (req, res) {
+baserouter.get("/cloudinitpxe-web.js", function (req, res) {
   res.setHeader("Content-Type", "application/javascript");
-  res.render(__dirname + '/public/netbootxyz-web.ejs', {baseurl: baseurl});
+  res.render(__dirname + '/public/cloudinitpxe-web.ejs', {baseurl: baseurl});
 });
 //// Public JS and CSS ////
 baserouter.use('/public', express.static(__dirname + '/public'));
@@ -67,7 +67,8 @@ io.on('connection', function(socket){
     var dashinfo = {};
     dashinfo['webversion'] = version;
     dashinfo['menuversion'] = fs.readFileSync('/config/menuversion.txt', 'utf8');
-    fetch('https://api.github.com/repos/netbootxyz/netboot.xyz/releases/latest', {headers: {'user-agent': 'node.js'}})
+    // We still check the original netboot.xyz repo for version comparison since we're based on it
+    fetch('https://api.github.com/repos/cloudinitpxe/cloud-init-pxe/releases/latest', {headers: {'user-agent': 'node.js'}})
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -213,7 +214,7 @@ io.on('connection', function(socket){
   });
   // When Dev Browser is requested reach out to github for versions
   socket.on('devgetbrowser', async function(){
-    var api_url = 'https://api.github.com/repos/netbootxyz/netboot.xyz/';
+    var api_url = 'https://api.github.com/repos/cloud-init-pxe/cloud-init-pxe.com/';
     var options = {headers: {'user-agent': 'node.js'}};
     var releasesResponse = await fetch(api_url + 'releases', options);
     if (!releasesResponse.ok) {
@@ -258,23 +259,23 @@ async function upgrademenu(version, callback){
   }
   // Download files
   var downloads = [];
-  var rom_files = ['netboot.xyz.kpxe',
-                   'netboot.xyz-undionly.kpxe',
-                   'netboot.xyz.efi',
-                   'netboot.xyz-snp.efi',
-                   'netboot.xyz-snponly.efi',
-                   'netboot.xyz-arm64.efi',
-                   'netboot.xyz-arm64-snp.efi',
-                   'netboot.xyz-arm64-snponly.efi'];
+  var rom_files = ['cloud-init-pxe.kpxe',
+                   'cloud-init-pxe-undionly.kpxe',
+                   'cloud-init-pxe.efi',
+                   'cloud-init-pxe-snp.efi',
+                   'cloud-init-pxe-snponly.efi',
+                   'cloud-init-pxe-arm64.efi',
+                   'cloud-init-pxe-arm64-snp.efi',
+                   'cloud-init-pxe-arm64-snponly.efi'];
 
   // This is a commit sha
   if (version.length == 40){
-    var download_endpoint = 'https://s3.amazonaws.com/dev.boot.netboot.xyz/' + version + '/ipxe/';
-    downloads.push({'url':'https://s3.amazonaws.com/dev.boot.netboot.xyz/' + version + '/menus.tar.gz','path':remote_folder});
+    var download_endpoint = 'https://s3.amazonaws.com/dev.boot.cloud-init-pxe.com/' + version + '/ipxe/';
+    downloads.push({'url':'https://s3.amazonaws.com/dev.boot.cloud-init-pxe.com/' + version + '/menus.tar.gz','path':remote_folder});
   }
   // This is a regular release
   else{
-    var download_endpoint = 'https://github.com/netbootxyz/netboot.xyz/releases/download/' + version + '/';
+    var download_endpoint = 'https://github.com/cloud-init-pxe/cloud-init-pxe.com/releases/download/' + version + '/';
     downloads.push({'url':download_endpoint + 'menus.tar.gz','path':remote_folder});
   }
   for (var i in rom_files){
@@ -283,7 +284,7 @@ async function upgrademenu(version, callback){
     downloads.push({'url':url,'path':remote_folder});
   }
   // static config for endpoints
-  downloads.push({'url':'https://raw.githubusercontent.com/netbootxyz/netboot.xyz/' + version +'/endpoints.yml','path':'/config/'});
+  downloads.push({'url':'https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe.com/' + version +'/endpoints.yml','path':'/config/'});
   await downloader(downloads);
   var untarcmd = 'tar xf ' + remote_folder + 'menus.tar.gz -C ' + remote_folder;
   if (version.length == 40){
@@ -308,7 +309,7 @@ async function dlremote(dlfiles, callback){
     // Make destination directory
     fs.mkdirSync(dlpath, { recursive: true });
     // Construct array for use in download function
-    var url = 'https://github.com/netbootxyz' + dlfile;
+    var url = 'https://github.com/cloud-init-pxe' + dlfile;
     dlarray.push({'url':url,'path':dlpath});
   }
   await downloader(dlarray);

@@ -1,4 +1,4 @@
-// Unified netboot.xyz Studio Application
+// Unified cloud-init-pxe.com Studio Application
 
 // Get baseurl from the current path or default to '/'
 const baseurl = window.location.pathname.replace(/\/[^\/]*$/, '/') || '/';
@@ -216,7 +216,7 @@ function renderDashboard() {
             <button class="btn btn-secondary" onclick="updateMenus()">
               <i class="fas fa-sync"></i> Update Boot Menus
             </button>
-            <a href="https://netboot.xyz/docs" target="_blank" class="btn btn-secondary">
+            <a href="https://cloud-init-pxe.com/docs" target="_blank" class="btn btn-secondary">
               <i class="fas fa-book"></i> Documentation
             </a>
           </div>
@@ -429,13 +429,13 @@ function renderLogs() {
       <div class="card-body">
         <div style="background: var(--bg-primary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.875rem; height: 500px; overflow-y: auto;">
           <div style="color: var(--text-muted);">
-            [2024-06-04 12:00:00] INFO: netboot.xyz Studio started<br>
+            [2024-06-04 12:00:00] INFO: cloud-init-pxe.com Studio started<br>
             [2024-06-04 12:00:01] INFO: TFTP server listening on port 69<br>
             [2024-06-04 12:00:01] INFO: Web server listening on port 80<br>
             [2024-06-04 12:00:02] INFO: Application ready on port 3000<br>
             [2024-06-04 12:00:05] INFO: Dashboard accessed by client 192.168.1.100<br>
             [2024-06-04 12:00:10] INFO: Cloud-init configuration 'web-server.yaml' created<br>
-            [2024-06-04 12:00:15] INFO: TFTP request for netboot.xyz.kpxe from 192.168.1.150<br>
+            [2024-06-04 12:00:15] INFO: TFTP request for cloud-init-pxe.kpxe from 192.168.1.150<br>
             <span style="color: var(--text-secondary);">Logs are displayed in real-time...</span>
           </div>
         </div>
@@ -518,15 +518,15 @@ function renderSettings() {
           <h3 class="card-title">About</h3>
         </div>
         <div class="card-body">
-          <h4>netboot.xyz Studio</h4>
+          <h4>cloud-init-pxe.com Studio</h4>
           <p>Version: <strong>2.0.0</strong></p>
           <p>A modern interface for PXE boot and cloud-init management.</p>
           
           <div style="margin-top: 1rem;">
-            <a href="https://github.com/netbootxyz/netboot.xyz" target="_blank" class="btn btn-secondary">
+            <a href="https://github.com/cloudinitpxe/cloud-init-pxe" target="_blank" class="btn btn-secondary">
               <i class="fab fa-github"></i> GitHub
             </a>
-            <a href="https://netboot.xyz/docs" target="_blank" class="btn btn-secondary">
+            <a href="https://cloud-init-pxe.com/docs" target="_blank" class="btn btn-secondary">
               <i class="fas fa-book"></i> Documentation
             </a>
           </div>
@@ -1113,7 +1113,7 @@ function setupSocketHandlers() {
       <div style="margin-top: 2rem;">
         <h5>Available Remote Assets</h5>
         <p style="color: var(--text-secondary);">
-          Browse and download boot images, ISOs, and other assets from the netboot.xyz repository.
+          Browse and download boot images, ISOs, and other assets from the cloud-init-pxe.com repository.
         </p>
         <button class="btn btn-primary" onclick="browseRemoteAssets()">
           <i class="fas fa-globe"></i> Browse Remote Assets

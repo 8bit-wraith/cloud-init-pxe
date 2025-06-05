@@ -1,6 +1,6 @@
-# netboot.xyz Studio API Documentation
+# Cloud-Init PXE Studio API Documentation
 
-This document describes the HTTP API endpoints available in netboot.xyz Studio.
+This document describes the HTTP API endpoints available in Cloud-Init PXE Studio.
 
 ## Base URLs
 
@@ -226,14 +226,14 @@ socket.emit('system:stats');
 The TFTP server runs on port 69/UDP and serves files from `/config/menus/`.
 
 ### Available Files
-- `netboot.xyz.kpxe` - Legacy BIOS
-- `netboot.xyz.efi` - UEFI systems
+- `cloud-init-pxe.kpxe` - Legacy BIOS
+- `cloud-init-pxe.efi` - UEFI systems
 - `custom.ipxe` - Custom boot menu
 
 ### DHCP Configuration Example
 ```
 next-server <server-ip>;
-filename "netboot.xyz.kpxe";
+filename "cloud-init-pxe.kpxe";
 ```
 
 ## Examples
@@ -330,7 +330,7 @@ WebSocket errors are emitted via the `cloud-init:error` event.
 
 Monitor the application health by checking:
 - HTTP endpoint availability: `curl -I http://<server>:3000`
-- TFTP service: `tftp <server> -c get netboot.xyz.kpxe /tmp/test.kpxe`
+- TFTP service: `tftp <server> -c get cloud-init-pxe.kpxe /tmp/test.kpxe`
 - WebSocket connectivity: Connect and emit `system:stats`
 
 ## Future API Enhancements

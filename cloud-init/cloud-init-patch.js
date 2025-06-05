@@ -1,4 +1,4 @@
-// Cloud-init patch for netboot.xyz
+// Cloud-init patch for cloud-init-pxe.com
 // This file adds cloud-init functionality to the existing app
 
 const CloudInitHandler = require('./cloud-init-handler.js');

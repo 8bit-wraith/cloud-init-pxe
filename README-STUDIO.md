@@ -24,6 +24,7 @@
 Cloud-Init Studio is a complete reimagining of [netboot.xyz](https://netboot.xyz) with a unified, modern interface that combines PXE boot management with powerful cloud-init configuration capabilities. The beautiful dark-themed interface (with light mode option) provides an intuitive experience for managing your network boot environment and cloud-init configurations in one place.
 
 Perfect for:
+
 - 🏢 **Enterprise Deployments**: Manage cloud-init configs for large-scale server deployments
 - 🎓 **Homelab Enthusiasts**: Easily configure your servers with consistent settings
 - 👨‍💻 **DevOps Teams**: Streamline your infrastructure provisioning workflow
@@ -32,6 +33,7 @@ Perfect for:
 ## ✨ Features
 
 ### Core Features
+
 - 🎨 **Unified Modern Interface**: One beautiful interface for all netboot.xyz and cloud-init features
 - 📊 **Dashboard**: Real-time system stats, quick actions, and status overview
 - 📝 **Boot Menu Management**: Edit and customize iPXE boot menus
@@ -42,6 +44,7 @@ Perfect for:
 - 🔧 **iPXE Integration**: Seamless boot menu and cloud-init integration
 
 ### Interface Features
+
 - 🌙 **Dark/Light Theme**: Beautiful dark theme by default with light mode option
 - 🎯 **Smart Navigation**: Collapsible sidebar with intuitive organization
 - 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
@@ -56,19 +59,21 @@ Perfect for:
 ### Using Docker Compose (Recommended)
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/cloud-init-studio.git
    cd cloud-init-studio
    ```
 
 2. **Start the container**
+
    ```bash
    docker-compose -f docker-compose-cloud-init.yml up -d
    ```
 
 3. **Access the unified interface**
-   - Main Interface: http://localhost:3000
-   - Legacy Interface: http://localhost:3000/legacy (if you prefer the classic look)
+   - Main Interface: <http://localhost:3000>
+   - Legacy Interface: <http://localhost:3000/legacy> (if you prefer the classic look)
 
 ### Using Docker CLI
 
@@ -93,7 +98,7 @@ docker run -d \
 ### Creating Your First Configuration
 
 1. **Navigate to Cloud-Init Studio**
-   - Open http://localhost:3000/cloud-init-studio in your browser
+   - Open <http://localhost:3000/cloud-init-studio> in your browser
 
 2. **Create a New Configuration**
    - Click the "New Config" button
@@ -161,6 +166,7 @@ boot
 ## 🎨 Interface Overview
 
 ### Unified Modern Interface
+
 - **Dashboard**: System overview with real-time stats and quick actions
 - **Boot Menus**: Manage iPXE scripts and boot configurations
 - **Cloud-Init Manager**: Create and edit cloud-init configurations with syntax highlighting
@@ -170,6 +176,7 @@ boot
 - **Toast Notifications**: Non-intrusive feedback for all your actions
 
 ### Key Design Elements
+
 - Modern card-based layout with smooth animations
 - Consistent color scheme with accent colors for different sections
 - Professional typography and spacing
@@ -264,4 +271,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ---
 
-<p align="center">Made with ❤️ by the Cloud-Init Studio Team</p> 
+<p align="center">Made with ❤️ by the Cloud-Init Studio Team</p>

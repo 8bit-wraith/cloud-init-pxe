@@ -1,18 +1,19 @@
 {
-  "name": "WebApp",
-  "version": "0.7.5",
-  "description": "Configuration and mirroring application for netboot.xyz stack",
+  "name": "cloud-init-pxe",
+  "version": "1.0.0",
+  "description": "Cloud-init configuration and OS deployment solution based on netboot.xyz",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/netbootxyz/webapp.git"
+    "url": "git+https://github.com/cloud-init-pxe/cloud-init-pxe.com.git"
   },
-  "author": "netboot.xyz",
+  "author": "cloud-init-pxe.com (based on netboot.xyz)",
   "license": "Apache-2.0",
-  "homepage": "https://netboot.xyz",
+  "homepage": "https://cloud-init-pxe.com",
   "dependencies": {
     "ejs": "3.1.10",
     "express": "4.21.2",

@@ -12,7 +12,7 @@ We release patches for security vulnerabilities. Which versions are eligible for
 
 ## Reporting a Vulnerability
 
-We take the security of netboot.xyz Studio seriously. If you have discovered a security vulnerability, please follow these steps:
+We take the security of Cloud-Init PXE Studio seriously. If you have discovered a security vulnerability, please follow these steps:
 
 ### 1. Do NOT Create a Public Issue
 
@@ -70,8 +70,8 @@ Include the following information:
 ```yaml
 version: '3.8'
 services:
-  netbootxyz:
-    image: ghcr.io/yourusername/cloud-init-studio:latest
+  cloudinitpxe:
+    image: ghcr.io/yourusername/cloud-init-pxe-studio:latest
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"  # Bind to localhost only
@@ -100,7 +100,7 @@ services:
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name netboot.example.com;
+    server_name cloud-init-pxe.example.com;
 
     ssl_certificate /path/to/cert.pem;
     ssl_certificate_key /path/to/key.pem;

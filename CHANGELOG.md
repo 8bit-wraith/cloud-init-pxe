@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Major Update - Complete UI Overhaul
 
 #### Added
+
 - **Unified Modern Interface**: Completely replaced the dated netboot.xyz UI with a stunning modern design
 - **Single Dashboard**: All features now accessible from one unified interface
 - **Professional Dark Theme**: Beautiful dark theme by default with smooth animations
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `monitoring-stack.yaml` - Prometheus + Grafana monitoring
 
 #### Changed
+
 - **Main Interface**: The modern UI is now the default at `/`
 - **Legacy Access**: Original netboot.xyz UI moved to `/legacy`
 - **Navigation Flow**: Improved user experience with logical grouping
@@ -30,14 +32,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Visual Hierarchy**: Better organization with cards and sections
 
 #### Improved
+
 - **Performance**: Optimized WebSocket communications
 - **Responsiveness**: Better mobile and tablet experience
 - **Code Quality**: Cleaner, more maintainable codebase
 - **User Feedback**: Immediate visual feedback for all actions
 
-## [1.0.0] - 2024-06-04 (Legacy)
+## [1.0.0] - 2024-06-04
 
-### Added
+### Legacy
+
+#### Added ✨
+
+<!-- Overview of major feature categories -->
+**Core Platform Features:**
+
+- 🚀 Initial release of Cloud-Init Studio with complete configuration lifecycle management
+- 📝 Cloud-init configuration management (create, edit, delete) with persistent storage
+- 🔌 HTTP API endpoints for cloud-init integration:
+  - User-data: `/cloud-init/user-data/<config>.yaml`
+  - Meta-data: `/cloud-init/meta-data`
+- 🌐 iPXE integration with custom boot menus
+- 🔄 WebSocket-based real-time updates for collaborative editing
+
+**User Interface:**
+
+- 🎨 Dual interface options:
+  - Classic Bootstrap interface for existing netboot.xyz users
+  - Modern dark-themed "Studio" interface with advanced features
+- 📱 Responsive design supporting desktop, tablet, and mobile devices
+- 🌓 Dark/light theme toggle for user preference
+
+**Editor Features:**
+
+- ✅ YAML syntax validation with immediate feedback
+- 📊 Live preview of documentation and YAML configurations
+- 📋 One-click URL copying for easy sharing
+- 📚 Markdown documentation support for configurations
+
+**Templates & Pre-configurations:**
+
+- 📦 Pre-built templates for common scenarios:
+  - `basic-setup.yaml` - Essential server configuration
+  - `kubernetes-node.yaml` - Ready-to-use Kubernetes node setup
+  - `docker-host.yaml` - Container-optimized host configuration
+
+**Deployment & Infrastructure:**
+
+- 🐳 Docker and Docker Compose support for easy deployment
+- 🔧 Non-invasive patching system for netboot.xyz integration
+- 💾 Persistent storage for configurations (YAML files)
+
 - Initial release of Cloud-Init Studio
 - Cloud-init configuration management (create, edit, delete)
 - Classic Bootstrap interface for existing netboot.xyz users
@@ -61,6 +106,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Persistent storage for configurations
 
 ### Technical Details
+
 - Based on Alpine Linux 3.21.3
 - Node.js application with Express
 - Socket.IO for real-time communication
@@ -70,17 +116,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - TFTP server included (tftp-hpa)
 
 ### Known Issues
+
 - Documentation is stored in memory only (not persisted to disk)
 - No authentication mechanism (designed for trusted networks)
 - Limited to single-user scenarios
 
 ### Security
+
 - Configurations are served without authentication
 - Intended for use in trusted network environments only
 
 ## [Unreleased]
 
 ### Planned Features
+
 - Persistent documentation storage
 - Configuration versioning and history
 - Import/Export functionality
@@ -89,4 +138,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Kubernetes operator for cloud-init configs
 - API rate limiting
 - Audit logging
-- Configuration templates marketplace 
+- Configuration templates marketplace
