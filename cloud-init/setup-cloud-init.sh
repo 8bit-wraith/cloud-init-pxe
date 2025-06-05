@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup cloud-init support in netboot.xyz
+# Setup cloud-init support in cloud-init-pxe
 
 echo "[cloud-init] Setting up cloud-init support..."
 
@@ -57,7 +57,7 @@ cat > /tmp/cloud-init-patch.js << 'EOF'
   baserouter.get("/cloud-init/meta-data", function (req, res) {
     const metadata = {
       'instance-id': 'iid-' + Date.now(),
-      'local-hostname': req.query.hostname || 'netboot-instance'
+      'local-hostname': req.query.hostname || 'cloud-init-pxe-instance'
     };
     res.setHeader('Content-Type', 'text/plain');
     res.send(yaml.dump(metadata));
