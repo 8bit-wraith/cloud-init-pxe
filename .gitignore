@@ -11,3 +11,4 @@ build/
 .cursor
 assets/
 config/menus/local/
+config/log/

@@ -33,11 +33,11 @@ function show_logo() {
 # Configuration - Feel free to modify these variables
 DOCKER_IMAGE="cloudinitpxe-webapp"
 CONTAINER_NAME="cloudinitpxe-webapp"
-WEBAPP_PORT=3000
+WEBAPP_PORT=3434
 TFTP_PORT=69
-NGINX_PORT=8080
-CONFIG_PATH="/local/path/to/config"
-ASSETS_PATH="/local/path/to/assets"
+NGINX_PORT=8484
+CONFIG_PATH="config"
+ASSETS_PATH="assets"
 MENU_VERSION="2.0.84"
 
 # Useful helper functions

@@ -6,11 +6,12 @@
 
 > "Some networks are born great, some achieve greatness, and some have greatness thrust upon them through PXE booting." — Not Shakespeare, probably
 
-## 🎭 What Is This Magic? 
+## 🎭 What Is This Magic?
 
 This repo houses the **cloud-init-pxe webapp** - a stylish web interface for editing iPXE files and downloading assets locally. It's like a backstage pass to the rock concert of network booting!
 
 The app allows you to:
+
 - ✨ Configure and manage iPXE boot files through a slick web UI
 - 🌐 Serve boot files via TFTP (because FTP was too mainstream)
 - 🏗️ Host assets locally through a built-in NGINX webserver
@@ -49,9 +50,9 @@ docker run -d \
 
 ## 🔌 Port Assignments (Because Sharing Is Caring)
 
-* **Port 3000**: Web Application - Your gateway to iPXE glory
-* **Port 8080**: NGINX Webserver - Serving assets faster than a short-order cook
-* **Port 69**: TFTP Server - Yes, 69. Stop giggling, it's a standard port. Really!
+- **Port 3000**: Web Application - Your gateway to iPXE glory
+- **Port 8080**: NGINX Webserver - Serving assets faster than a short-order cook
+- **Port 69**: TFTP Server - Yes, 69. Stop giggling, it's a standard port. Really!
 
 ## 🧙‍♂️ The Magic Management Script
 
@@ -100,9 +101,9 @@ Cloud-Init-PXE combines several technologies to create a seamless network bootin
 
 ## 💡 Fun Facts
 
-* The TFTP protocol is so old it remembers when Elvis was just getting started
-* If you stack all the network packets used in PXE booting end to end, they'd reach approximately... actually, we have no idea, but Trish says the accounting on that would be a nightmare
-* This project was written with more enthusiasm than a caffeinated developer at 3am
+- The TFTP protocol is so old it remembers when Elvis was just getting started
+- If you stack all the network packets used in PXE booting end to end, they'd reach approximately... actually, we have no idea, but Trish says the accounting on that would be a nightmare
+- This project was written with more enthusiasm than a caffeinated developer at 3am
 
 ## 🧪 Contributing
 
