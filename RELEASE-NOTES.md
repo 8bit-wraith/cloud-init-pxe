@@ -1,27 +1,31 @@
-# Cloud-Init Studio Release Notes
+# netboot.xyz Studio Release Notes
 
-## v1.0.0 - Initial Release (2024-06-04)
+## v2.0.0 - Complete UI Overhaul (2024-06-04)
 
 ### 🎉 Features
 
+#### Unified Modern Interface
+- **Complete UI Overhaul**: Beautiful, modern interface that replaces the dated netboot.xyz UI
+- **Single Unified Experience**: All features in one cohesive interface - no more switching between different UIs
+- **Dark/Light Theme**: Gorgeous dark theme by default with smooth light theme option
+- **Responsive Design**: Perfect experience on desktop, tablet, and mobile devices
+
 #### Core Functionality
-- **Cloud-Init Configuration Management**: Create, edit, delete, and organize cloud-init configurations
-- **Template Support**: Pre-built templates for common scenarios (basic setup, Kubernetes nodes)
-- **YAML Validation**: Real-time syntax validation for cloud-init configurations
+- **Dashboard**: Real-time system monitoring with CPU, memory, and version information
+- **Boot Menu Management**: Edit and customize iPXE scripts with syntax highlighting
+- **Cloud-Init Manager**: Create, edit, and organize cloud-init configurations
+- **Asset Management**: Download and manage local boot assets
+- **Template Library**: Pre-built templates for common scenarios (basic setup, Kubernetes nodes, Docker hosts)
 - **HTTP API**: Serve cloud-init user-data and meta-data via HTTP endpoints
-- **iPXE Integration**: Custom boot menus for cloud-init enabled deployments
+- **iPXE Integration**: Seamless integration between boot menus and cloud-init
 
-#### Modern UI (Cloud-Init Studio)
-- **Dark Theme**: Beautiful dark theme by default with light theme option
-- **Markdown Documentation**: Document your configurations with integrated markdown editor
-- **Live Preview**: See your documentation and configuration in a formatted preview
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Modern Stack**: Built with modern web technologies for fast performance
-
-#### Classic UI
-- **Bootstrap Interface**: Familiar interface for existing netboot.xyz users
-- **CodeMirror Editor**: Syntax highlighting for YAML files
-- **WebSocket Updates**: Real-time updates when configurations change
+#### User Experience
+- **Smart Navigation**: Collapsible sidebar that remembers your preferences
+- **Global Search**: Quick search across all sections
+- **Toast Notifications**: Non-intrusive feedback for all actions
+- **One-Click Actions**: Common tasks are just a click away
+- **Professional Design**: Modern card-based layout with smooth animations
+- **CodeMirror Integration**: Professional code editing for YAML and iPXE scripts
 
 ### 🔧 Technical Details
 

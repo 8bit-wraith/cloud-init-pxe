@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>netboot.xyz Cloud-Init Manager</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/material-ocean.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/yaml/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/shell/shell.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/anyword-hint.min.js"></script>
+  
+  <!-- JS-YAML for validation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    /* Cyberpunk Theme Variables */
+    :root {
+      --bg-primary: #0a0e1b;
+      --bg-secondary: #0f1724;
+      --bg-tertiary: #151d2a;
+      --text-primary: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --text-muted: #606060;
+      --primary: #00ff41;
+      --secondary: #ff1744;
+      --accent: #00e5ff;
+      --warning: #ffab00;
+      --border: #1a2332;
+      --border-dim: #0d1119;
+      --glow-sm: 0 0 10px rgba(0, 255, 65, 0.5);
+      --glow-md: 0 0 20px rgba(0, 255, 65, 0.6);
+      --glow-lg: 0 0 40px rgba(0, 255, 65, 0.7);
+    }
+
+    /* CodeMirror */
+    .CodeMirror {
+      height: 100%;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    
+    /* CodeMirror Autocomplete Hints */
+    .CodeMirror-hints {
+      background: var(--bg-secondary) !important;
+      border: 1px solid var(--primary) !important;
+      border-radius: 0.25rem !important;
+      box-shadow: var(--glow-sm) !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.8125rem !important;
+    }
+    
+    .CodeMirror-hint {
+      color: var(--text-secondary) !important;
+      padding: 0.25rem 0.5rem !important;
+      border-radius: 0 !important;
+    }
+    
+    .CodeMirror-hint-active {
+      background: var(--primary) !important;
+      color: var(--bg-primary) !important;
+    }
+    
+    /* Custom hint display text styling */
+    .CodeMirror-hint span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-left: 1rem;
+    }
+
+    /* Editor */
+    .editor-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 0.375rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <!-- Socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+  
+  <!-- Application -->
+  <script src="/unified-app.js"></script>
+</body>
+</html> 

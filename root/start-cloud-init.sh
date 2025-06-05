@@ -7,9 +7,11 @@ mkdir -p \
   /config/log/nginx \
   /run \
   /var/lib/nginx/tmp/client_body \
-  /var/tmp/nginx \
-  /cloud-init/configs \
-  /cloud-init/templates
+  /var/tmp/nginx
+
+# Create cloud-init subdirectories only if they don't exist (preserve copied files)
+mkdir -p /cloud-init/configs
+mkdir -p /cloud-init/templates
 
 # copy config files
 [[ ! -f /config/nginx/nginx.conf ]] && \
@@ -95,9 +97,10 @@ echo "         with Cloud-Init configuration support!          "
 echo ""
 
 # Patch app.js with cloud-init support
-if [ -f /cloud-init/setup-cloud-init.sh ]; then
-  chmod +x /cloud-init/setup-cloud-init.sh
-  /cloud-init/setup-cloud-init.sh
+if [ -f /usr/local/bin/setup-cloud-init.sh ]; then
+  /usr/local/bin/setup-cloud-init.sh
+else
+  echo "[cloud-init] Warning: setup script not found!"
 fi
 
 supervisord -c /etc/supervisor-cloud-init.conf 

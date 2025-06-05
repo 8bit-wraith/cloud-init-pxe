@@ -21,7 +21,7 @@
 
 ## 🌟 What is Cloud-Init Studio?
 
-Cloud-Init Studio extends [netboot.xyz](https://netboot.xyz) with powerful cloud-init configuration management capabilities. It provides both a classic interface for existing users and a modern, dark-themed "Studio" interface with advanced features like markdown documentation and live preview.
+Cloud-Init Studio is a complete reimagining of [netboot.xyz](https://netboot.xyz) with a unified, modern interface that combines PXE boot management with powerful cloud-init configuration capabilities. The beautiful dark-themed interface (with light mode option) provides an intuitive experience for managing your network boot environment and cloud-init configurations in one place.
 
 Perfect for:
 - 🏢 **Enterprise Deployments**: Manage cloud-init configs for large-scale server deployments
@@ -32,21 +32,24 @@ Perfect for:
 ## ✨ Features
 
 ### Core Features
-- 📝 **Configuration Management**: Create, edit, and organize cloud-init configurations
-- 🎨 **Dual Interface**: Choose between classic Bootstrap or modern dark-themed UI
-- 📚 **Markdown Documentation**: Document your configurations with integrated markdown
-- 🔍 **Live Preview**: See your documentation and YAML in a formatted view
+- 🎨 **Unified Modern Interface**: One beautiful interface for all netboot.xyz and cloud-init features
+- 📊 **Dashboard**: Real-time system stats, quick actions, and status overview
+- 📝 **Boot Menu Management**: Edit and customize iPXE boot menus
+- ☁️ **Cloud-Init Manager**: Create, edit, and organize cloud-init configurations
+- 📦 **Asset Management**: Manage local boot assets and ISOs
 - 🎯 **Template Library**: Pre-built templates for common scenarios
 - 🌐 **HTTP API**: Serve configurations via standard cloud-init endpoints
-- 🔧 **iPXE Integration**: Custom boot menus for cloud-init deployments
-- 💾 **Persistent Storage**: Your configurations are safely stored
+- 🔧 **iPXE Integration**: Seamless boot menu and cloud-init integration
 
-### Modern UI Features
-- 🌙 **Dark/Light Theme**: Beautiful dark theme with light mode option
-- 📱 **Responsive Design**: Works on desktop, tablet, and mobile
-- ⚡ **Real-time Updates**: WebSocket-powered live updates
-- 🎯 **YAML Validation**: Catch syntax errors before deployment
-- 📋 **Easy URL Copying**: One-click copy for configuration URLs
+### Interface Features
+- 🌙 **Dark/Light Theme**: Beautiful dark theme by default with light mode option
+- 🎯 **Smart Navigation**: Collapsible sidebar with intuitive organization
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- ⚡ **Real-time Updates**: WebSocket-powered live updates across all features
+- 🔍 **Global Search**: Quick search across menus, configs, and assets
+- 📋 **One-Click Actions**: Copy URLs, update menus, and more with single clicks
+- 🎨 **Syntax Highlighting**: Beautiful code editors for YAML and iPXE scripts
+- 💬 **Toast Notifications**: Non-intrusive feedback for all actions
 
 ## 🚀 Quick Start
 
@@ -63,10 +66,9 @@ Perfect for:
    docker-compose -f docker-compose-cloud-init.yml up -d
    ```
 
-3. **Access the interfaces**
-   - Modern UI: http://localhost:3000/cloud-init-studio
-   - Classic UI: http://localhost:3000/cloud-init
-   - Main netboot.xyz: http://localhost:3000
+3. **Access the unified interface**
+   - Main Interface: http://localhost:3000
+   - Legacy Interface: http://localhost:3000/legacy (if you prefer the classic look)
 
 ### Using Docker CLI
 
@@ -156,18 +158,23 @@ imgargs linux auto=true cloud-config-url=http://${next-server}/cloud-init/user-d
 boot
 ```
 
-## 🎨 Screenshots
+## 🎨 Interface Overview
 
-### Modern Interface (Cloud-Init Studio)
-- Dark theme with syntax highlighting
-- Split view with configuration list and editor
-- Markdown documentation support
-- Live preview of documentation
+### Unified Modern Interface
+- **Dashboard**: System overview with real-time stats and quick actions
+- **Boot Menus**: Manage iPXE scripts and boot configurations
+- **Cloud-Init Manager**: Create and edit cloud-init configurations with syntax highlighting
+- **Asset Management**: Download and manage boot images and ISOs
+- **Dark/Light Theme**: Toggle between beautiful dark and light themes
+- **Responsive Sidebar**: Collapsible navigation that adapts to your screen size
+- **Toast Notifications**: Non-intrusive feedback for all your actions
 
-### Classic Interface
-- Familiar Bootstrap design
-- Simple and straightforward
-- Perfect for quick edits
+### Key Design Elements
+- Modern card-based layout with smooth animations
+- Consistent color scheme with accent colors for different sections
+- Professional typography and spacing
+- Intuitive icons and visual hierarchy
+- Zero learning curve - everything is where you expect it to be
 
 ## 🏗️ Architecture
 

@@ -1,11 +1,41 @@
 # Changelog
 
-All notable changes to Cloud-Init Studio will be documented in this file.
+All notable changes to netboot.xyz Studio will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-06-04
+## [2.0.0] - 2024-06-04
+
+### Major Update - Complete UI Overhaul
+
+#### Added
+- **Unified Modern Interface**: Completely replaced the dated netboot.xyz UI with a stunning modern design
+- **Single Dashboard**: All features now accessible from one unified interface
+- **Professional Dark Theme**: Beautiful dark theme by default with smooth animations
+- **Light Theme Support**: Clean light theme option for different preferences
+- **Collapsible Sidebar**: Smart navigation that remembers your preferences
+- **Real-time System Stats**: Live CPU, memory, and version monitoring on dashboard
+- **Toast Notifications**: Non-intrusive feedback system for all actions
+- **Global Search**: Quick search functionality (ready for implementation)
+- **Additional Templates**:
+  - `ansible-ready.yaml` - Ansible-managed system setup
+  - `monitoring-stack.yaml` - Prometheus + Grafana monitoring
+
+#### Changed
+- **Main Interface**: The modern UI is now the default at `/`
+- **Legacy Access**: Original netboot.xyz UI moved to `/legacy`
+- **Navigation Flow**: Improved user experience with logical grouping
+- **Editor Experience**: Consistent CodeMirror implementation across all editors
+- **Visual Hierarchy**: Better organization with cards and sections
+
+#### Improved
+- **Performance**: Optimized WebSocket communications
+- **Responsiveness**: Better mobile and tablet experience
+- **Code Quality**: Cleaner, more maintainable codebase
+- **User Feedback**: Immediate visual feedback for all actions
+
+## [1.0.0] - 2024-06-04 (Legacy)
 
 ### Added
 - Initial release of Cloud-Init Studio

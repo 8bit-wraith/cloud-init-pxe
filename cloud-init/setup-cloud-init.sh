@@ -9,19 +9,36 @@ cat > /tmp/cloud-init-patch.js << 'EOF'
 
 // Cloud-init support
 (function() {
-  const CloudInitHandler = require('/cloud-init/cloud-init-handler.js');
+  const CloudInitHandler = require('/app/cloud-init-handler.js');
   const cloudInit = new CloudInitHandler();
   const yaml = require('js-yaml');
   const path = require('path');
   
-  // Add cloud-init routes
-  baserouter.get("/cloud-init", function (req, res) {
-    res.render(path.join(__dirname, '/public/cloud-init.ejs'), {baseurl: baseurl});
+  // Override the default root route with modern interface
+  // Remove the old route first
+  const routes = baserouter.stack.filter(layer => layer.route);
+  const rootRouteIndex = routes.findIndex(r => r.route.path === '/' && r.route.methods.get);
+  if (rootRouteIndex !== -1) {
+    baserouter.stack.splice(baserouter.stack.indexOf(routes[rootRouteIndex]), 1);
+  }
+  
+  // Add new unified modern interface as default
+  baserouter.get("/", function (req, res) {
+    res.render(path.join(__dirname, '/public/unified-app.ejs'), {baseurl: baseurl});
   });
   
-  // Modern cloud-init interface
+  // Keep legacy interface at /legacy
+  baserouter.get("/legacy", function (req, res) {
+    res.render(path.join(__dirname, '/public/index.ejs'), {baseurl: baseurl});
+  });
+  
+  // Redirects for old cloud-init routes
+  baserouter.get("/cloud-init", function (req, res) {
+    res.redirect(baseurl);
+  });
+  
   baserouter.get("/cloud-init-studio", function (req, res) {
-    res.render(path.join(__dirname, '/public/cloud-init-modern.ejs'), {baseurl: baseurl});
+    res.redirect(baseurl);
   });
 
   // Serve cloud-init configs
@@ -92,35 +109,42 @@ cat > /tmp/cloud-init-patch.js << 'EOF'
   });
   
   console.log('[cloud-init] Cloud-init support enabled!');
-  
-  // Add Cloud-Init links to navigation if exists
-  setTimeout(() => {
-    const nav = document.querySelector('.navbar-nav.mr-auto');
-    if (nav && !document.querySelector('.nav-link[href*="cloud-init"]')) {
-      // Add Cloud-Init Classic link
-      const cloudInitClassic = document.createElement('li');
-      cloudInitClassic.className = 'nav-item active';
-      cloudInitClassic.innerHTML = '<a class="nav-link" href="' + baseurl + 'cloud-init">Cloud-Init</a>';
-      nav.appendChild(cloudInitClassic);
-      
-      // Add Cloud-Init Studio link
-      const cloudInitStudio = document.createElement('li');
-      cloudInitStudio.className = 'nav-item active';
-      cloudInitStudio.innerHTML = '<a class="nav-link" href="' + baseurl + 'cloud-init-studio">Studio <span class="badge badge-primary">New</span></a>';
-      nav.appendChild(cloudInitStudio);
-    }
-  }, 1000);
 })();
 
 EOF
 
-# Find the line before app.use(baseurl, baserouter); and insert our patch
+# Find and comment out the original root route, then add our patch
 if [ -f /app/app.js ]; then
   # Make a backup
   cp /app/app.js /app/app.js.original
   
-  # Insert the cloud-init patch before app.use(baseurl, baserouter);
-  sed -i '/app.use(baseurl, baserouter);/r /tmp/cloud-init-patch.js' /app/app.js
+  # Create a modified version that comments out the original root route
+  awk '
+    /^baserouter\.get\("\/", function \(req, res\) \{$/ {
+      print "// Original root route commented out by cloud-init setup"
+      print "// " $0
+      in_route = 1
+      next
+    }
+    in_route && /^\}\);$/ {
+      print "// " $0
+      in_route = 0
+      next
+    }
+    in_route {
+      print "// " $0
+      next
+    }
+    /^app\.use\(baseurl, baserouter\);$/ {
+      # Insert our patch before this line
+      system("cat /tmp/cloud-init-patch.js")
+      print ""
+    }
+    {print}
+  ' /app/app.js > /app/app.js.tmp
+  
+  # Replace the original file
+  mv /app/app.js.tmp /app/app.js
   
   echo "[cloud-init] Successfully patched app.js"
 else

@@ -1,16 +1,29 @@
-# netboot.xyz with Cloud-Init Support
+# netboot.xyz Studio - Modern PXE Boot & Cloud-Init Management
 
-This is a custom Docker container that extends netboot.xyz with cloud-init configuration management capabilities. It allows you to create, edit, and serve cloud-init configurations alongside your network boot environment.
+A complete reimagining of netboot.xyz with a stunning modern interface that unifies PXE boot management and cloud-init configuration in one beautiful application. Say goodbye to dated interfaces and hello to a professional, intuitive experience.
 
-## Features
+## ✨ Key Features
 
-- Full netboot.xyz functionality for PXE booting
-- Web-based cloud-init configuration editor
-- Pre-built cloud-init templates
-- HTTP endpoints for serving cloud-init user-data and meta-data
-- Integration with iPXE boot menus
-- YAML syntax validation
-- Multiple configuration management
+### 🎨 Beautiful Modern Interface
+- **Unified Dashboard** - All your PXE boot and cloud-init tools in one stunning interface
+- **Dark/Light Theme** - Professional dark theme by default, with a clean light mode
+- **Responsive Design** - Perfect on desktop, tablet, and mobile devices
+- **Smart Navigation** - Collapsible sidebar that adapts to your workflow
+
+### 🚀 Core Functionality
+- **PXE Boot Management** - Full netboot.xyz functionality with a modern twist
+- **Cloud-Init Studio** - Create, edit, and manage cloud-init configurations
+- **Boot Menu Editor** - Customize iPXE scripts with syntax highlighting
+- **Asset Management** - Download and organize boot images and ISOs
+- **Template Library** - Pre-built configurations for common scenarios
+- **Real-time Monitoring** - System stats, version tracking, and health checks
+
+### 💡 Developer Experience
+- **CodeMirror Integration** - Professional code editing for YAML and iPXE
+- **WebSocket Updates** - Real-time synchronization across all features
+- **Toast Notifications** - Non-intrusive feedback for every action
+- **One-Click Actions** - Common tasks are always one click away
+- **HTTP API** - Serve cloud-init configs via standard endpoints
 
 ## Quick Start
 

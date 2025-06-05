@@ -48,10 +48,22 @@ RUN \
 COPY . /app
 COPY cloud-init/ /cloud-init/
 
+# Debug: List cloud-init contents
+RUN ls -la /cloud-init/
+
+# Copy setup script to a safe location
+RUN cp /cloud-init/setup-cloud-init.sh /usr/local/bin/setup-cloud-init.sh && \
+    chmod +x /usr/local/bin/setup-cloud-init.sh
+
+# Copy cloud-init handler to app directory where it can access node_modules
+RUN cp /cloud-init/cloud-init-handler.js /app/cloud-init-handler.js
+
 RUN \
  npm install --prefix /app && \
  apk del --purge build-dependencies && \
- rm -rf /tmp/*
+ rm -rf /tmp/* && \
+ # Ensure cloud-init scripts are executable
+ chmod +x /cloud-init/*.sh 2>/dev/null || true
 
 ENV TFTPD_OPTS=''
 ENV NGINX_PORT='80'

@@ -1,0 +1,13 @@
+# Ignore Node.js modules
+node_modules/
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore local environment files
+.env
+.cursorrules
+.cursor
+assets/
+config/menus/local/

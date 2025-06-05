@@ -1,0 +1,105 @@
+#cloud-config
+# Ansible-ready system configuration
+
+# Update packages
+package_update: true
+package_upgrade: true
+
+# Install Ansible dependencies
+packages:
+  - python3
+  - python3-pip
+  - python3-apt
+  - python3-setuptools
+  - openssh-server
+  - sudo
+  - curl
+  - git
+  - software-properties-common
+
+# Create ansible user
+users:
+  - name: ansible
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... # Replace with your Ansible control node SSH key
+
+# Configure system for Ansible
+runcmd:
+  # Install Ansible (optional - for pull mode)
+  - add-apt-repository --yes --update ppa:ansible/ansible
+  - apt-get install -y ansible
+  
+  # Configure Python
+  - update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+  
+  # Create Ansible directory structure
+  - mkdir -p /etc/ansible/facts.d
+  - mkdir -p /var/log/ansible
+  
+  # Set up Ansible logging
+  - touch /var/log/ansible/ansible.log
+  - chown -R ansible:ansible /var/log/ansible
+  
+  # Configure sudoers for Ansible
+  - echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
+  
+  # Disable requiretty for sudo (for Ansible compatibility)
+  - sed -i 's/^Defaults.*requiretty/# &/' /etc/sudoers
+
+# Write Ansible configuration
+write_files:
+  - path: /etc/ansible/ansible.cfg
+    content: |
+      [defaults]
+      host_key_checking = False
+      retry_files_enabled = False
+      gathering = smart
+      fact_caching = jsonfile
+      fact_caching_connection = /tmp/ansible_facts
+      fact_caching_timeout = 86400
+      log_path = /var/log/ansible/ansible.log
+      
+      [ssh_connection]
+      pipelining = True
+      control_path = /tmp/ansible-ssh-%%h-%%p-%%r
+    owner: root:root
+    permissions: '0644'
+  
+  - path: /etc/ansible/facts.d/cloud_init.fact
+    content: |
+      {
+        "deployment_method": "cloud-init",
+        "deployment_date": "$(date -u +%Y-%m-%d)",
+        "managed_by": "ansible"
+      }
+    owner: root:root
+    permissions: '0755'
+  
+  - path: /etc/ssh/sshd_config.d/ansible.conf
+    content: |
+      # Ansible optimizations
+      UseDNS no
+      GSSAPIAuthentication no
+      PermitRootLogin no
+      PasswordAuthentication no
+      ChallengeResponseAuthentication no
+      UsePAM yes
+    owner: root:root
+    permissions: '0644'
+
+# Configure SSH for better Ansible performance
+ssh_pwauth: false
+disable_root: true
+
+# Set hostname
+manage_etc_hosts: true
+preserve_hostname: false
+
+# Set timezone
+timezone: UTC
+
+# Final message
+final_message: "Ansible-ready system configured! Ready for automation." 
