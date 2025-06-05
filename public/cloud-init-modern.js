@@ -232,7 +232,7 @@ function toggleTheme() {
 // Show about dialog
 function showAbout() {
   alert(`Cloud-Init Studio v1.0.0
-  A modern interface for managing cloud-init configurations with cloud-init-pxe.com.
+  A modern interface for managing cloud-init configurations with cloud-init-pxe.
   
 
 Features:
@@ -242,7 +242,7 @@ Features:
 - Live preview
 - Template support
 
-Created with ❤️ for the cloud-init-pxe.com community`);
+Created with ❤️ for the cloud-init-pxe community`);
 }
 
 // Socket event handlers

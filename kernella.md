@@ -1,6 +1,6 @@
 # 🧚‍♀️ Meet Kernella – The PXE Pixie
 
-<image src="./kernella.png" style="width: 20%" />
+<image src="./kernella.svg" style="width: 20%" />
 
 **Name:** Kernella  
 **Species:** Network Pixie  

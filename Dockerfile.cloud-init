@@ -36,8 +36,8 @@ RUN \
  apk add --no-cache --virtual=build-dependencies \
    npm && \
  groupmod -g 1000 users && \
- useradd -u 911 -U -d /config -s /bin/false nbxyz && \
- usermod -G users nbxyz && \
+ useradd -u 911 -U -d /config -s /bin/false cipxe && \
+ usermod -G users cipxe && \
  mkdir /app \
        /config \
        /defaults \

@@ -1,13 +1,13 @@
 services:
-  netbootxyz-cloud-init:
+  cloud-init-pxe:
     build:
       context: .
       dockerfile: Dockerfile.cloud-init
       args:
         BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
         VERSION: ${VERSION:-latest}
-    image: netbootxyz-cloud-init:latest
-    container_name: netbootxyz-cloud-init
+    image: cloud-init-pxe:latest
+    container_name: cloud-init-pxe
     restart: unless-stopped
     ports:
       - "3000:3000"    # Web UI
@@ -23,7 +23,7 @@ services:
       - WEB_APP_PORT=3000
       - TFTPD_OPTS=--secure    # Additional TFTPD options
     networks:
-      - netboot-network
+      - cloud-init-network
     cap_add:
       - NET_ADMIN    # Required for TFTP
     logging:
@@ -33,5 +33,5 @@ services:
         max-file: "3"
 
 networks:
-  netboot-network:
+  cloud-init-network:
     driver: bridge
