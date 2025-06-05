@@ -17,7 +17,7 @@ The app allows you to:
 - 🏗️ Host assets locally through a built-in NGINX webserver
 - ☁️ Integrate with cloud-init for that sweet, sweet cloud configuration goodness
 
-The app is versioned over time and is integrated into the docker-cloudinitpxe project located [here](https://github.com/cloudinitpxe/docker-cloudinitpxe).
+The app is versioned over time and is integrated into the docker-cloudinitpxe project located [here](https://github.com/cloud-init-pxe/docker-cloudinitpxe).
 
 ## 🏗️ Building It (So Easy Even Trish from Accounting Could Do It)
 
@@ -25,9 +25,9 @@ Uses the docker-cloudinitpxe repo for source files to avoid duplication of confi
 
 ```bash
 # Clone the repositories
-git clone https://github.com/cloudinitpxe/webapp
+git clone https://github.com/cloud-init-pxe/webapp
 cd webapp
-git clone https://github.com/cloudinitpxe/docker-cloudinitpxe
+git clone https://github.com/cloud-init-pxe/docker-cloudinitpxe
 
 # Build that beautiful container
 docker build . -t cloudinitpxe-webapp
@@ -86,7 +86,7 @@ docker run -d \
   -v /local/path/to/config:/config   `# optional` \
   -v /local/path/to/assets:/assets   `# optional` \
   --restart unless-stopped \
-  ghcr.io/cloudinitpxe/webapp-dev:latest
+  ghcr.io/cloud-init-pxe/webapp-dev:latest
 ```
 
 ## 🤔 Technical Overview
