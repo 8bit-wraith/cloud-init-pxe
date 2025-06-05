@@ -77,16 +77,11 @@ function check_docker() {
 function build_app() {
   print_status "Building ${BOLD}$DOCKER_IMAGE${RESET}..."
   
-  if [ ! -d "docker-cloudinitpxe" ]; then
-    print_info "Cloning docker-cloudinitpxe repository..."
-    git clone https://github.com/cloudinitpxe/docker-cloudinitpxe
-    if [ $? -ne 0 ]; then
-      print_error "Failed to clone the docker-cloudinitpxe repository!"
-      exit 1
-    fi
-  fi
+  # Use local Dockerfile instead of external repo
+  print_info "Using local Dockerfile.cloud-init for build..."
   
-  docker build . -t $DOCKER_IMAGE
+  # Build using the Dockerfile.cloud-init in the current directory
+  docker build -f Dockerfile.cloud-init -t $DOCKER_IMAGE .
   
   if [ $? -eq 0 ]; then
     print_success "Built $DOCKER_IMAGE successfully!"
