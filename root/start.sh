@@ -16,9 +16,9 @@ mkdir -p \
   cp /defaults/default /config/nginx/site-confs/default
   
 # Ownership
-chown -R nbxyz:nbxyz /assets
-chown -R nbxyz:nbxyz /var/lib/nginx
-chown -R nbxyz:nbxyz /var/log/nginx
+chown -R cipxe:cipxe /assets
+chown -R cipxe:cipxe /var/lib/nginx
+chown -R cipxe:cipxe /var/log/nginx
 
 # create local logs dir
 mkdir -p \
@@ -30,7 +30,7 @@ if [[ ! -f /config/menus/remote/menu.ipxe ]]; then
   if [[ -z ${MENU_VERSION+x} ]]; then \
     MENU_VERSION=$(curl -sL "https://api.github.com/repos/cloud-init-pxe/cloud-init-pxe/releases/latest" | jq -r '.tag_name')
   fi
-  echo "[netbootxyz-init] Downloading netboot.xyz at ${MENU_VERSION}"
+  echo "[cloud-init-pxe-init] Downloading cloud-init-pxe at ${MENU_VERSION}"
   # menu files
   curl -o \
     /config/endpoints.yml -sL \
@@ -43,29 +43,29 @@ if [[ ! -f /config/menus/remote/menu.ipxe ]]; then
     /config/menus/remote
   # boot files
   curl -o \
-    /config/menus/remote/netboot.xyz.kpxe -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz.kpxe"
+    /config/menus/remote/cloud-init-pxe.kpxe -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe.kpxe"
   curl -o \
-    /config/menus/remote/netboot.xyz-undionly.kpxe -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-undionly.kpxe"
+    /config/menus/remote/cloud-init-pxe-undionly.kpxe -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-undionly.kpxe"
   curl -o \
-    /config/menus/remote/netboot.xyz.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz.efi"
+    /config/menus/remote/cloud-init-pxe.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe.efi"
   curl -o \
-    /config/menus/remote/netboot.xyz-snp.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-snp.efi"
+    /config/menus/remote/cloud-init-pxe-snp.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-snp.efi"
   curl -o \
-    /config/menus/remote/netboot.xyz-snponly.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-snponly.efi"
+    /config/menus/remote/cloud-init-pxe-snponly.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-snponly.efi"
   curl -o \
-    /config/menus/remote/netboot.xyz-arm64.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-arm64.efi"
+    /config/menus/remote/cloud-init-pxe-arm64.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-arm64.efi"
   curl -o \
-    /config/menus/remote/netboot.xyz-arm64-snp.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-arm64-snp.efi"
+    /config/menus/remote/cloud-init-pxe-arm64-snp.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-arm64-snp.efi"
   curl -o \
-    /config/menus/remote/netboot.xyz-arm64-snponly.efi -sL \
-    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/netboot.xyz-arm64-snponly.efi"
+    /config/menus/remote/cloud-init-pxe-arm64-snponly.efi -sL \
+    "https://github.com/cloud-init-pxe/cloud-init-pxe/releases/download/${MENU_VERSION}/cloud-init-pxe-arm64-snponly.efi"
   # layer and cleanup
   echo -n ${MENU_VERSION} > /config/menuversion.txt
   cp -r /config/menus/remote/* /config/menus
@@ -73,13 +73,13 @@ if [[ ! -f /config/menus/remote/menu.ipxe ]]; then
 fi
 
 # Ownership
-chown -R nbxyz:nbxyz /config
+chown -R cipxe:cipxe /config
 
-echo "            _   _                 _                      "
-echo " _ __   ___| |_| |__   ___   ___ | |_  __  ___   _ ____  "
-echo "| '_ \ / _ \ __| '_ \ / _ \ / _ \| __| \ \/ / | | |_  /  "
-echo "| | | |  __/ |_| |_) | (_) | (_) | |_ _ >  <| |_| |/ /   "
-echo "|_| |_|\___|\__|_.__/ \___/ \___/ \__(_)_/\_\\__,  /___| "
-echo "                                             |___/       "
+echo "   ____ _                 _       _____       _ _     ____  __  _______ "
+echo "  / ___| | ___  _   _  __| |     |_   _|_ __ (_) |_  |  _ \\\\ \\/ / ____|"
+echo " | |   | |/ _ \\| | | |/ _\` |_____  | |_| '_ \\| | __| | |_) \\  /|  _|  "
+echo " | |___| | (_) | |_| | (_| |_____| | |_| | | | | |_  |  __//  \\| |___ "
+echo "  \\____|_|\\___/ \\__,_|\\__,_|       |_(_)_| |_|_|\\__| |_|  /_/\\_\\_____|"
+echo "                                                                       "
 
 supervisord -c /etc/supervisor.conf
