@@ -1403,6 +1403,14 @@ function toggleDocPanel() {
 
 // Show AI Assistant
 function showAIAssistant() {
+  // For now, we'll use a prompt for the API key. 
+  // In a future version, we can store this in settings.
+  const apiKey = prompt("Please enter your Open WebUI API Key (Settings > Account):");
+  if (!apiKey) {
+    showToast("API Key is required to use the AI Assistant.", 'warning');
+    return;
+  }
+  
   showModal('AI Cloud-Init Assistant', `
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <p style="color: var(--text-secondary);">
@@ -1415,7 +1423,7 @@ function showAIAssistant() {
         placeholder="Example: How do I create a user with sudo access and add SSH keys?"
         style="resize: vertical;"
       ></textarea>
-      <div id="ai-response" style="display: none;">
+      <div id="ai-response" style="display: none; margin-top: 1rem;">
         <h5 style="color: var(--primary); margin-bottom: 0.5rem;">AI Response:</h5>
         <div id="ai-response-content" style="background: var(--bg-tertiary); padding: 1rem; border-radius: 0.25rem; max-height: 300px; overflow-y: auto;">
           <!-- Response will appear here -->
@@ -1424,7 +1432,7 @@ function showAIAssistant() {
     </div>
   `, `
     <button class="btn btn-secondary" onclick="closeModal()">Close</button>
-    <button class="btn btn-primary" onclick="askAI()">
+    <button class="btn btn-primary" onclick="askAI('${apiKey}')">
       <i class="fas fa-robot"></i> Ask AI
     </button>
   `);
@@ -1432,9 +1440,10 @@ function showAIAssistant() {
   document.getElementById('ai-question').focus();
 }
 
-// Ask AI (simulation - in real implementation, this would call an AI API)
-function askAI() {
-  const question = document.getElementById('ai-question').value;
+// Ask AI
+async function askAI(apiKey) {
+  const questionInput = document.getElementById('ai-question');
+  const question = questionInput.value;
   if (!question) {
     showToast('Please enter a question', 'error');
     return;
@@ -1447,53 +1456,49 @@ function askAI() {
   responseContent.innerHTML = '<div class="spinner"></div> Thinking...';
   responseDiv.style.display = 'block';
   
-  // Simulate AI response (in production, this would be an API call)
-  setTimeout(() => {
-    let response = '';
+  // Clear previous response
+  responseContent.innerHTML = '';
+
+  try {
+    // Use a default model for now. This could be configurable later.
+    const model = "llama3.1"; // Replace with a valid model name from your Open WebUI instance
+    const apiUrl = `${window.location.origin}/api/chat/completions`; // Assuming Open WebUI is on the same host/port
     
-    if (question.toLowerCase().includes('sudo') && question.toLowerCase().includes('ssh')) {
-      response = `To create a user with sudo access and SSH keys, use:
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: [{
+          role: "user",
+          content: question
+        }]
+      })
+    });
 
-<pre style="background: var(--bg-primary); padding: 0.5rem; margin: 0.5rem 0;"><code>users:
-  - name: myuser
-    gecos: My User
-    groups: sudo
-    shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_authorized_keys:
-      - ssh-rsa AAAAB3Nza... your-key-here</code></pre>
-
-This will:
-• Create user 'myuser'
-• Add to sudo group
-• Allow passwordless sudo
-• Add SSH public key for authentication`;
-    } else if (question.toLowerCase().includes('docker')) {
-      response = `To install Docker on Ubuntu, use:
-
-<pre style="background: var(--bg-primary); padding: 0.5rem; margin: 0.5rem 0;"><code>packages:
-  - docker.io
-  - docker-compose
-
-runcmd:
-  - systemctl enable docker
-  - systemctl start docker
-  - usermod -aG docker ubuntu</code></pre>
-
-This installs Docker and adds the ubuntu user to the docker group.`;
-    } else {
-      response = `Cloud-init is a powerful tool for instance initialization. Common tasks include:
-
-• Installing packages with <code>packages:</code>
-• Running commands with <code>runcmd:</code>
-• Creating files with <code>write_files:</code>
-• Managing users with <code>users:</code>
-
-For specific help, try asking about a particular feature or task!`;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorData.message || JSON.stringify(errorData)}`);
     }
+
+    const data = await response.json();
     
-    responseContent.innerHTML = response;
-  }, 1000);
+    // Display the AI's response
+    if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
+      // Assuming the response content is markdown, render it
+      responseContent.innerHTML = marked.parse(data.choices[0].message.content);
+    } else {
+      responseContent.innerHTML = '<span style="color: var(--text-muted);">No response from AI.</span>';
+    }
+
+  } catch (error) {
+    console.error('AI Assistant Error:', error);
+    responseContent.innerHTML = `<span style="color: var(--danger);">Error: ${error.message}</span>`;
+    showToast(`AI Error: ${error.message}`, 'error');
+  }
 }
 
 // Add jsyaml for validation (include this in your HTML)
