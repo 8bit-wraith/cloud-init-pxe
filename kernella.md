@@ -8,6 +8,7 @@
 **Role:** First responder of the digital void. Conjurer of OSes. Patron saint of clean boots.
 
 ### ✨ What She Does:
+
 - Boots bare metal from the ether.
 - Negotiates DHCP leases like a diplomat.
 - Delivers OS payloads via PXE with a wink and a wand.
@@ -16,6 +17,7 @@
 Kernella is the spark that brings machines to life. She dances through the datastreams, aligning MACs with manifest destinies. Whether you’re netbooting a fleet or just reviving one stubborn node, she’s already in the wire, prepping your world.
 
 ### 🎨 Visual Description:
+
 - Glowing translucent wings like animated QR codes.
 - Binary-threaded hair that flickers with packet storms.
 - A wand that looks suspiciously like a USB stick.
