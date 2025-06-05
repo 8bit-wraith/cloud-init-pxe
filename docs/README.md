@@ -1,6 +1,6 @@
-# netboot.xyz Studio Documentation
+# Cloud-Init-PXE Documentation
 
-Welcome to the comprehensive documentation for netboot.xyz Studio - the modern PXE boot and cloud-init management solution.
+Welcome to the comprehensive documentation for Cloud-Init-PXE - the modern PXE boot and cloud-init management solution.
 
 ## 📚 Documentation Overview
 
@@ -55,7 +55,7 @@ Welcome to the comprehensive documentation for netboot.xyz Studio - the modern P
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   netboot.xyz Studio                      │
+│                   Cloud-Init-PXE                      │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
 │  ┌─────────────┐  ┌──────────────┐  ┌───────────────┐  │

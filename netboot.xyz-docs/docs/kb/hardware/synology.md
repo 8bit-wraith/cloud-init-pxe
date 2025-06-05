@@ -22,11 +22,11 @@ Open the Synology Package Center, search for "Container Manager", and click "Ins
 
 ### Download netboot.xyz Container Image
 
-Open Container Manager from the main menu, go to the "Registry" tab, and search for `netbootxyz`. Select the `netbootxyz/netboot.xyz` image from the list, click "Download", and choose the latest version.
+Open Container Manager from the main menu, go to the "Registry" tab, and search for `netbootxyz`. Select the `cloud-init-pxe/cloud-init-pxe` image from the list, click "Download", and choose the latest version.
 
 ### Create and Configure the Container
 
-Go to the "Image" tab in Container Manager, select the `netbootxyz/netboot.xyz` image, and click "Run". In the "Create Container" wizard, configure the following settings:
+Go to the "Image" tab in Container Manager, select the `cloud-init-pxe/cloud-init-pxe` image, and click "Run". In the "Create Container" wizard, configure the following settings:
 
 - **General Settings**:
   - Container Name: `netbootxyz`

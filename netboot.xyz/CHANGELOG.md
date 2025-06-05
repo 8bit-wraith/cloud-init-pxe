@@ -338,7 +338,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Hardset Flatcar Linux initrd to fix booting (`https://github.com/netbootxyz/netboot.xyz/issues/1070`)
+- Hardset Flatcar Linux initrd to fix booting (`https://github.com/cloud-init-pxe/cloud-init-pxe/issues/1070`)
 - Archlinux now sets archtecture correctly with static ips
 
 ### Changes
@@ -429,7 +429,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Corrects an issue with loading 32-bit linux menu on 64-bit platforms (https://github.com/netbootxyz/netboot.xyz/issues/978)
+- Corrects an issue with loading 32-bit linux menu on 64-bit platforms (https://github.com/cloud-init-pxe/cloud-init-pxe/issues/978)
 
 ## [2.0.46] - 2021-08-29
 

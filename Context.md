@@ -16,7 +16,7 @@ The Cloud-Init-PXE webapp provides a web interface for editing iPXE files and do
 - Web interface for configuration
 - TFTP for network booting
 - NGINX for asset hosting
-- Integration with netboot.xyz
+- Integration with Cloud-Init-PXE
 
 ## Configuration Paths
 

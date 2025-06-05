@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # if tag exists append random string to it
-CODE=$(curl -s -o /dev/null -I -w "%{http_code}" https://api.github.com/repos/netbootxyz/netboot.xyz/releases/tags/"${RELEASE_TAG}")
+CODE=$(curl -s -o /dev/null -I -w "%{http_code}" https://api.github.com/repos/cloud-init-pxe/cloud-init-pxe/releases/tags/"${RELEASE_TAG}")
 echo ${CODE}
 if [ "${CODE}" == "404" ]; then
   git tag ${RELEASE_TAG}

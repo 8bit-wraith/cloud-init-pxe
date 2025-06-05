@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG VERSION
 ARG WEBAPP_VERSION
 
-LABEL build_version="netboot.xyz version: ${VERSION} Build-date: ${BUILD_DATE}"
+LABEL build_version="Cloud-Init-PXE version: ${VERSION} Build-date: ${BUILD_DATE}"
 LABEL maintainer="antonym"
-LABEL org.opencontainers.image.description="netboot.xyz official docker container - Your favorite operating systems in one place. A network-based bootable operating system installer based on iPXE."
+LABEL org.opencontainers.image.description="Cloud-Init-PXE official docker container - Your favorite operating systems in one place. A network-based bootable operating system installer based on iPXE."
 
 RUN \
  apk update && \

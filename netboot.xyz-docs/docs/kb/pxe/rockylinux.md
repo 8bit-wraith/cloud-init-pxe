@@ -43,4 +43,4 @@ set ksurl http://my.kickstart.com/ks.cfg
 inst.ks=${ksurl}
 ```
 
-For more examples, you can view the netboot.xyz configuration for Rocky Linux [here](https://github.com/netbootxyz/netboot.xyz/blob/master/roles/netbootxyz/templates/menu/rockylinux.ipxe.j2).
+For more examples, you can view the netboot.xyz configuration for Rocky Linux [here](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/netbootxyz/templates/menu/rockylinux.ipxe.j2).

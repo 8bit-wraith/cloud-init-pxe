@@ -1,8 +1,8 @@
-# netboot.xyz Studio - Project Summary
+# Cloud-Init-PXE - Project Summary
 
 ## 🎯 What We've Built
 
-We've completely transformed netboot.xyz from a dated, fragmented interface into **netboot.xyz Studio** - a unified, modern web application that combines PXE boot management with cloud-init configuration in one beautiful interface.
+We've completely transformed Cloud-Init-PXE from a dated, fragmented interface into **Cloud-Init-PXE** - a unified, modern web application that combines PXE boot management with cloud-init configuration in one beautiful interface.
 
 ## 🚀 Key Achievements
 
@@ -39,7 +39,7 @@ We've completely transformed netboot.xyz from a dated, fragmented interface into
 ## 📁 Project Structure
 
 ```text
-netboot.xyz-studio/
+Cloud-Init-PXE-studio/
 ├── Dockerfile.cloud-init        # Enhanced Docker image
 ├── docker-compose-cloud-init.yml  # Easy deployment
 ├── public/
@@ -47,7 +47,7 @@ netboot.xyz-studio/
 │   ├── unified-app.js           # Application logic
 │   ├── cloud-init.ejs           # Legacy cloud-init interface
 │   ├── cloud-init-modern.ejs    # Standalone modern cloud-init
-│   └── index.ejs              # Original netboot.xyz (at /legacy)
+│   └── index.ejs              # Original Cloud-Init-PXE (at /legacy)
 ├── cloud-init/
 │   ├── cloud-init-handler.js    # Core cloud-init logic
 │   ├── cloud-init-patch.js      # Integration patch
@@ -80,7 +80,7 @@ netboot.xyz-studio/
 
 ## 🔧 Technical Implementation
 
-- **Non-Invasive Patching**: The original netboot.xyz code is preserved
+- **Non-Invasive Patching**: The original Cloud-Init-PXE code is preserved
 - **Modular Architecture**: Clean separation of concerns
 - **WebSocket Integration**: Real-time updates without polling
 - **Persistent Storage**: Configurations are safely stored
@@ -94,7 +94,7 @@ docker-compose -f docker-compose-cloud-init.yml up -d
 
 # Access at
 http://localhost:3000          # Modern unified interface
-http://localhost:3000/legacy   # Original netboot.xyz interface
+http://localhost:3000/legacy   # Original Cloud-Init-PXE interface
 ```
 
 ## 📊 Templates Included
@@ -126,4 +126,4 @@ While the current implementation is fully functional, potential future additions
 
 ## 🎉 Conclusion
 
-We've successfully transformed netboot.xyz into a modern, professional tool that's a joy to use. The new interface not only looks beautiful but significantly improves the user experience with thoughtful features and smooth interactions. This is now a tool that ops teams can be proud to use and show off!
+We've successfully transformed Cloud-Init-PXE into a modern, professional tool that's a joy to use. The new interface not only looks beautiful but significantly improves the user experience with thoughtful features and smooth interactions. This is now a tool that ops teams can be proud to use and show off!

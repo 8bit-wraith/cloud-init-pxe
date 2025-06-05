@@ -8,7 +8,7 @@ hide_table_of_contents: true
 This download page provides the latest rolling releases of netboot.xyz. They are generated
 as updates occur and are the most up to date.
 
-If you are looking for the release versions, you can download them [here](https://github.com/netbootxyz/netboot.xyz/releases).
+If you are looking for the release versions, you can download them [here](https://github.com/cloud-init-pxe/cloud-init-pxe/releases).
 
 All downloads will automatically load into [**boot.netboot.xyz**](https://boot.netboot.xyz).
 
@@ -61,4 +61,4 @@ All downloads will automatically load into [**boot.netboot.xyz**](https://boot.n
 
 ### Checksums
 
-SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/netbootxyz/netboot.xyz/tree/master/roles/netbootxyz/templates/disks).
+SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/cloud-init-pxe/cloud-init-pxe/tree/master/roles/netbootxyz/templates/disks).

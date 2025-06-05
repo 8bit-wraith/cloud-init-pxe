@@ -1,5 +1,5 @@
 // cloud-init-pxe.com
-// Main Node.js app - Based on the excellent netboot.xyz project but rebranded for cloud-init-pxe.com
+// Main Node.js app - Based on the excellent Cloud-Init-PXE project but rebranded with new features for cloud-init-pxe.com
 
 var baseurl = process.env.SUBFOLDER || '/';
 var app = require('express')();
@@ -67,7 +67,7 @@ io.on('connection', function(socket){
     var dashinfo = {};
     dashinfo['webversion'] = version;
     dashinfo['menuversion'] = fs.readFileSync('/config/menuversion.txt', 'utf8');
-    // We still check the original netboot.xyz repo for version comparison since we're based on it
+    // We are going to heavily diverge.  Simple merge is not an option.
     fetch('https://api.github.com/repos/cloudinitpxe/cloud-init-pxe/releases/latest', {headers: {'user-agent': 'node.js'}})
       .then(response => {
         if (!response.ok) {

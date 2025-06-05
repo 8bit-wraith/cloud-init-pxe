@@ -1,6 +1,6 @@
-# netboot.xyz Studio Roadmap
+# Cloud-Init-PXE Roadmap
 
-This document outlines the planned features and improvements for netboot.xyz Studio. Items are subject to change based on community feedback and contributions.
+This document outlines the planned features and improvements for Cloud-Init-PXE. Items are subject to change based on community feedback and contributions.
 
 ## 🎯 Current Focus (v2.x)
 

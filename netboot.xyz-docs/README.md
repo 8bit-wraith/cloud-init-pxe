@@ -1,6 +1,6 @@
 # netboot.xyz documentation
 
-[![Build Status](https://github.com/netbootxyz/netboot.xyz-docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/netbootxyz/netboot.xyz-docs/actions/workflows/deploy.yml)
+[![Build Status](https://github.com/cloud-init-pxe/cloud-init-pxe-docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/cloud-init-pxe/cloud-init-pxe-docs/actions/workflows/deploy.yml)
 [![Discord](https://img.shields.io/discord/425186187368595466)](https://discord.gg/An6PA2a)
 
 This is the main documentation repository for [netboot.xyz](https://netboot.xyz) which is built upon [Docusaurus](https://docusaurus.io/), a modern static website generator.

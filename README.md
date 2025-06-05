@@ -115,8 +115,9 @@ This project is licensed under the terms included in the [LICENSE](LICENSE) file
 
 ---
 
-*"Network booting: Because walking over to each computer with a USB drive is for suckers."*
+## "Network booting: Because walking over to each computer with a USB drive is for suckers ."*
 
 Brought to you by the team that believes Elvis is still alive (at least in our hearts and in our network packets).
 
 Aye, Aye! 🚢
+> **yes, you can even be a sucker and use a usb net boot with this project!**

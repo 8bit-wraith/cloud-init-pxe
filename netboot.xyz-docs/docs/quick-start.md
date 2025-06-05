@@ -47,15 +47,15 @@ Memory requirements vary depending on the distribution. Live CD Images typically
 
 ### Source Code
 
-The source code for netboot.xyz is located on [Github](https://github.com/netbootxyz/netboot.xyz). If you enjoy the project, make sure to give it a star!
+The source code for netboot.xyz is located on [Github](https://github.com/cloud-init-pxe/cloud-init-pxe). If you enjoy the project, make sure to give it a star!
 
 ### Contributing
 
-Is there a new version of an operating system out?  Have you found one that network boots well with iPXE?  Pull requests are welcomed and encouraged and helps out the project!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master, [Github Actions](https://github.com/netbootxyz/netboot.xyz/actions) will regenerate new versions of [iPXE from upstream](https://github.com/ipxe/ipxe) and deploy the latest changes to netboot.xyz.  See more on contributing [here](https://netboot.xyz/docs/contributing).
+Is there a new version of an operating system out?  Have you found one that network boots well with iPXE?  Pull requests are welcomed and encouraged and helps out the project!  Feel free to issue a pull request for new versions or tools that you might find useful.  Once merged into master, [Github Actions](https://github.com/cloud-init-pxe/cloud-init-pxe/actions) will regenerate new versions of [iPXE from upstream](https://github.com/ipxe/ipxe) and deploy the latest changes to netboot.xyz.  See more on contributing [here](https://netboot.xyz/docs/contributing).
 
 ### Testing New Features
 
-Under the **Utilities** menu on netboot.xyz, there's an option for ["netboot.xyz endpoints"](https://github.com/netbootxyz/netboot.xyz/blob/development/roles/netbootxyz/templates/menu/nbxyz.ipxe.j2).  Features or changes that have been merged into the development branch can be loaded here to be tested before they are merged into production. 
+Under the **Utilities** menu on netboot.xyz, there's an option for ["netboot.xyz endpoints"](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/development/roles/netbootxyz/templates/menu/nbxyz.ipxe.j2).  Features or changes that have been merged into the development branch can be loaded here to be tested before they are merged into production. 
 
 :::info
 
@@ -65,4 +65,4 @@ Version updates are typically deployed to the development endpoint and the prima
 
 ### Communication
 
-Feel free to open up an [issue](https://github.com/netbootxyz/netboot.xyz/issues/new/choose) on Github or join us on our [Discord](https://discord.gg/An6PA2a) server.  Follow us on [Twitter](https://twitter.com/netbootxyz) or like us on [Facebook](https://www.facebook.com/netboot.xyz)!
+Feel free to open up an [issue](https://github.com/cloud-init-pxe/cloud-init-pxe/issues/new/choose) on Github or join us on our [Discord](https://discord.gg/An6PA2a) server.  Follow us on [Twitter](https://twitter.com/netbootxyz) or like us on [Facebook](https://www.facebook.com/netboot.xyz)!

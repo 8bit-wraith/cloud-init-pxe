@@ -1,6 +1,6 @@
-# Contributing to netboot.xyz Studio
+# Contributing to Cloud-Init-PXE
 
-First off, thank you for considering contributing to netboot.xyz Studio! It's people like you that make this project such a great tool. 🎉
+First off, thank you for considering contributing to Cloud-Init-PXE! It's people like you that make this project such a great tool. 🎉
 
 ## Table of Contents
 
@@ -203,4 +203,4 @@ Contributors will be recognized in:
 - GitHub releases
 - Project documentation
 
-Thank you for making netboot.xyz Studio better! 🚀
+Thank you for making Cloud-Init-PXE better! 🚀

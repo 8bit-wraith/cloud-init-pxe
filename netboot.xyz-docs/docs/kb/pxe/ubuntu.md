@@ -45,7 +45,7 @@ set autoinstall_url http://my.autoinstall.com/
 autoinstall ds=nocloud-net;s=${autoinstall_url}
 ```
 
-For more examples, you can view the netboot.xyz configuration for Ubuntu [here](https://github.com/netbootxyz/netboot.xyz/blob/master/roles/netbootxyz/templates/menu/ubuntu.ipxe.j2).
+For more examples, you can view the netboot.xyz configuration for Ubuntu [here](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/netbootxyz/templates/menu/ubuntu.ipxe.j2).
 
 ## Live Boot
 

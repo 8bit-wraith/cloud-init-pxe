@@ -1,13 +1,13 @@
-## netboot.xyz [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Your%20favorite%20operating%20systems%20in%20one%20place!&url=https://netboot.xyz&hashtags=netbootxyz,ipxe,pxe,linux,tech,code)
+## Cloud-Init-PXE [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Your%20favorite%20operating%20systems%20in%20one%20place!&url=https://Cloud-Init-PXE&hashtags=netbootxyz,ipxe,pxe,linux,tech,code)
 
 Your favorite operating systems in one place!
 
-[![Build Status](https://github.com/netbootxyz/netboot.xyz/workflows/release/badge.svg)](https://github.com/netbootxyz/netboot.xyz/actions?query=workflow%3Arelease)
+[![Build Status](https://github.com/netbootxyz/Cloud-Init-PXE/workflows/release/badge.svg)](https://github.com/netbootxyz/Cloud-Init-PXE/actions?query=workflow%3Arelease)
 [![Discord](https://img.shields.io/discord/425186187368595466)](https://discord.gg/An6PA2a)
-[![Release](https://img.shields.io/github/v/release/netbootxyz/netboot.xyz?color=hunter%20green)](https://github.com/netbootxyz/netboot.xyz/releases/latest)
-![GitHub all releases](https://img.shields.io/github/downloads/netbootxyz/netboot.xyz/total)
+[![Release](https://img.shields.io/github/v/release/netbootxyz/Cloud-Init-PXE?color=hunter%20green)](https://github.com/netbootxyz/Cloud-Init-PXE/releases/latest)
+![GitHub all releases](https://img.shields.io/github/downloads/netbootxyz/Cloud-Init-PXE/total)
 
-![netboot.xyz menu](https://netboot.xyz/images/netboot.xyz.gif)
+![Cloud-Init-PXE menu](https://Cloud-Init-PXE/images/Cloud-Init-PXE.gif)
 
 ### Bootloader Downloads
 
@@ -15,75 +15,75 @@ Your favorite operating systems in one place!
 
 | Type | Bootloader | Description |
 |------|------------|-------------|
-|ISO| [netboot.xyz.iso](https://boot.netboot.xyz/ipxe/netboot.xyz.iso)| Used for CD/DVD, Virtual CDs, DRAC/iLO, VMware, Virtual Box |
-|USB| [netboot.xyz.img](https://boot.netboot.xyz/ipxe/netboot.xyz.img)| Used for creation of USB Keys|
+|ISO| [Cloud-Init-PXE.iso](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.iso)| Used for CD/DVD, Virtual CDs, DRAC/iLO, VMware, Virtual Box |
+|USB| [Cloud-Init-PXE.img](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.img)| Used for creation of USB Keys|
 
 #### Legacy (PCBIOS) iPXE Bootloaders
 
 | Type | Bootloader | Description |
 |------|------------|-------------|
-|Kernel| [netboot.xyz.lkrn](https://boot.netboot.xyz/ipxe/netboot.xyz.lkrn)|Used for booting from GRUB/EXTLINUX|
-|Floppy| [netboot.xyz.dsk](https://boot.netboot.xyz/ipxe/netboot.xyz.dsk)| Virtual floppy disk for DRAC/iLO, VMware, Virtual Box, etc|
-|Padded Floppy| [netboot.xyz.pdsk](https://boot.netboot.xyz/ipxe/netboot.xyz.pdsk)| Padded Virtual floppy disk for DRAC/iLO, VMware, Virtual Box, etc|
-|DHCP| [netboot.xyz.kpxe](https://boot.netboot.xyz/ipxe/netboot.xyz.kpxe)| DHCP boot image file, uses built-in iPXE NIC drivers|
-|DHCP-undionly| [netboot.xyz-undionly.kpxe](https://boot.netboot.xyz/ipxe/netboot.xyz-undionly.kpxe)| DHCP boot image file, use if you have NIC issues|
+|Kernel| [Cloud-Init-PXE.lkrn](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.lkrn)|Used for booting from GRUB/EXTLINUX|
+|Floppy| [Cloud-Init-PXE.dsk](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.dsk)| Virtual floppy disk for DRAC/iLO, VMware, Virtual Box, etc|
+|Padded Floppy| [Cloud-Init-PXE.pdsk](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.pdsk)| Padded Virtual floppy disk for DRAC/iLO, VMware, Virtual Box, etc|
+|DHCP| [Cloud-Init-PXE.kpxe](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.kpxe)| DHCP boot image file, uses built-in iPXE NIC drivers|
+|DHCP-undionly| [Cloud-Init-PXE-undionly.kpxe](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-undionly.kpxe)| DHCP boot image file, use if you have NIC issues|
 
 #### UEFI iPXE Bootloaders
 
 | Type | Bootloader | Description |
 |------|------------|-------------|
-|DHCP| [netboot.xyz.efi](https://boot.netboot.xyz/ipxe/netboot.xyz.efi)| DHCP boot image file, uses built-in iPXE NIC drivers|
-|DHCP-snp| [netboot.xyz-snp.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-snp.efi)| EFI w/ Simple Network Protocol, attempts to boot all net devices|
-|DHCP-snponly| [netboot.xyz-snponly.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-snponly.efi)| EFI w/ Simple Network Protocol, only boots from device chained from|
+|DHCP| [Cloud-Init-PXE.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.efi)| DHCP boot image file, uses built-in iPXE NIC drivers|
+|DHCP-snp| [Cloud-Init-PXE-snp.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-snp.efi)| EFI w/ Simple Network Protocol, attempts to boot all net devices|
+|DHCP-snponly| [Cloud-Init-PXE-snponly.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-snponly.efi)| EFI w/ Simple Network Protocol, only boots from device chained from|
 
 #### ARM64 iPXE Bootloaders
 
 | Type | Bootloader | Description |
 |------|------------|-------------|
-|DHCP| [netboot.xyz-arm64.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-arm64.efi)| DHCP boot image file, uses built-in iPXE NIC drivers|
-|DHCP-snp| [netboot.xyz-arm64-snp.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-arm64-snp.efi)| EFI w/ Simple Network Protocol, attempts to boot all net devices|
-|DHCP-snponly| [netboot.xyz-arm64-snponly.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-arm64-snponly.efi)| EFI w/ Simple Network Protocol, only boots from device chained from|
+|DHCP| [Cloud-Init-PXE-arm64.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-arm64.efi)| DHCP boot image file, uses built-in iPXE NIC drivers|
+|DHCP-snp| [Cloud-Init-PXE-arm64-snp.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-arm64-snp.efi)| EFI w/ Simple Network Protocol, attempts to boot all net devices|
+|DHCP-snponly| [Cloud-Init-PXE-arm64-snponly.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-arm64-snponly.efi)| EFI w/ Simple Network Protocol, only boots from device chained from|
 
 #### Raspberry Pi iPXE Bootloaders
 
 | Type | Bootloader | Description |
 |------|------------|-------------|
-|USB/SD Card| [netboot.xyz-rpi4-sdcard.img](https://boot.netboot.xyz/ipxe/netboot.xyz-rpi4-sdcard.img)| Raspberry Pi 4 - USB/SD Card Image|
-|DHCP-snp| [netboot.xyz-rpi4-snp.efi](https://boot.netboot.xyz/ipxe/netboot.xyz-rpi4-snp.efi)| Raspberry Pi 4 - EFI Image|
+|USB/SD Card| [Cloud-Init-PXE-rpi4-sdcard.img](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-rpi4-sdcard.img)| Raspberry Pi 4 - USB/SD Card Image|
+|DHCP-snp| [Cloud-Init-PXE-rpi4-snp.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-rpi4-snp.efi)| Raspberry Pi 4 - EFI Image|
 
-SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/netbootxyz/netboot.xyz/tree/master/ipxe/disks).
+SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/netbootxyz/Cloud-Init-PXE/tree/master/ipxe/disks).
 
-### What is netboot.xyz?
+### What is Cloud-Init-PXE?
 
-[netboot.xyz](http://www.netboot.xyz) is a convenient place to boot into any type of operating system or utility disk without the need of having to go spend time retrieving the ISO just to run it.  [iPXE](http://ipxe.org/) is used to provide a user friendly menu from within the BIOS that lets you easily choose the operating system you want along with any specific types of versions or bootable flags.
+[Cloud-Init-PXE](http://www.Cloud-Init-PXE) is a convenient place to boot into any type of operating system or utility disk without the need of having to go spend time retrieving the ISO just to run it.  [iPXE](http://ipxe.org/) is used to provide a user friendly menu from within the BIOS that lets you easily choose the operating system you want along with any specific types of versions or bootable flags.
 
-If you already have iPXE up and running on the network, you can hit netboot.xyz at anytime by typing for Legacy (PCBIOS) mode:
+If you already have iPXE up and running on the network, you can hit Cloud-Init-PXE at anytime by typing for Legacy (PCBIOS) mode:
 
-    chain --autofree http://boot.netboot.xyz/ipxe/netboot.xyz.lkrn
+    chain --autofree http://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.lkrn
 
 or when in UEFI mode:
 
-    chain --autofree http://boot.netboot.xyz/ipxe/netboot.xyz.efi
+    chain --autofree http://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE.efi
 
-You can also load using HTTPS, but by default builds of iPXE do not have HTTPS support compiled in. This will load the appropriate netboot.xyz kernel with all of the proper options enabled.
+You can also load using HTTPS, but by default builds of iPXE do not have HTTPS support compiled in. This will load the appropriate Cloud-Init-PXE kernel with all of the proper options enabled.
 
 ### Documentation
 
-See [netboot.xyz](https://netboot.xyz) for all documentation.  Some links to get started with are:
+See [Cloud-Init-PXE](https://Cloud-Init-PXE) for all documentation.  Some links to get started with are:
 
-* [Downloads](https://netboot.xyz/downloads/)
-* [Self Hosting](https://netboot.xyz/docs/selfhosting/)
-* [Booting Methods](https://netboot.xyz/docs/booting/ipxe)
-* [FAQ](https://netboot.xyz/docs/faq)
-* [Blog](https://netboot.xyz/blog)
+* [Downloads](https://Cloud-Init-PXE/downloads/)
+* [Self Hosting](https://Cloud-Init-PXE/docs/selfhosting/)
+* [Booting Methods](https://Cloud-Init-PXE/docs/booting/ipxe)
+* [FAQ](https://Cloud-Init-PXE/docs/faq)
+* [Blog](https://Cloud-Init-PXE/blog)
 
-If you'd like to contribute to the documentation, the netboot.xyz documentation is located at [netboot.xyz-docs](https://github.com/netbootxyz/netboot.xyz-docs).
+If you'd like to contribute to the documentation, the Cloud-Init-PXE documentation is located at [Cloud-Init-PXE-docs](https://github.com/netbootxyz/Cloud-Init-PXE-docs).
 
-### Self Hosting netboot.xyz
+### Self Hosting Cloud-Init-PXE
 
-For those users who want to deploy their own netboot.xyz environment,  you can leverage the same scripts that are used to deploy the hosted environment. The source scripts are all Ansible templates and can be generated and customized to your preference.
+For those users who want to deploy their own Cloud-Init-PXE environment,  you can leverage the same scripts that are used to deploy the hosted environment. The source scripts are all Ansible templates and can be generated and customized to your preference.
 
-Please see the [self-hosting docs](https://netboot.xyz/docs/selfhosting/) for more information but in short:
+Please see the [self-hosting docs](https://Cloud-Init-PXE/docs/selfhosting/) for more information but in short:
 
 #### Deploying using Ansible
 
@@ -106,15 +106,15 @@ The build output will be in the generated folder `buildout`
 
 #### Local Overrides
 
-Ansible will handle source generation as well as iPXE disk generation with your settings.  It will generate Legacy (PCBIOS) and UEFI iPXE disks that can be used to load into your netboot.xyz environment. If you want to override the defaults, you can put overrides in user_overrides.yml.  See `user_overrides.yml` for examples. 
+Ansible will handle source generation as well as iPXE disk generation with your settings.  It will generate Legacy (PCBIOS) and UEFI iPXE disks that can be used to load into your Cloud-Init-PXE environment. If you want to override the defaults, you can put overrides in user_overrides.yml.  See `user_overrides.yml` for examples. 
 
 Using the overrides file, you can override all of the settings from the defaults/main.yml so that you can easily change the boot mirror URLs when the menus are rendered.  If you prefer to do this after the fact, you can also edit the boot.cfg to make changes, but keep in mind those changes will not be saved when you redeploy the menu.
 
 #### Self Hosted Custom Options
 
-In addition to being able to host netboot.xyz locally, you can also create your own custom templates for custom menus within netboot.xyz.  Please see [Custom User Menus](etc/netbootxyz/custom/README.md) for more information.
+In addition to being able to host Cloud-Init-PXE locally, you can also create your own custom templates for custom menus within Cloud-Init-PXE.  Please see [Custom User Menus](etc/netbootxyz/custom/README.md) for more information.
 
-### What Operating Systems are currently available on netboot.xyz?
+### What Operating Systems are currently available on Cloud-Init-PXE?
 
 #### Operating Systems
 
@@ -214,8 +214,8 @@ In addition to being able to host netboot.xyz locally, you can also create your 
 
 ### Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/netbootxyz/netboot.xyz.svg)](https://starchart.cc/netbootxyz/netboot.xyz)
+[![Stargazers over time](https://starchart.cc/netbootxyz/Cloud-Init-PXE.svg)](https://starchart.cc/netbootxyz/Cloud-Init-PXE)
 
 ### Feedback
 
-Feel free to open up an [issue](https://github.com/netbootxyz/netboot.xyz/issues) on Github or ping us on [Discord](https://discord.gg/An6PA2a).  Follow us on [Twitter](https://twitter.com/netbootxyz) and like us on [Facebook](https://www.facebook.com/netboot.xyz)!
+Feel free to open up an [issue](https://github.com/netbootxyz/Cloud-Init-PXE/issues) on Github or ping us on [Discord](https://discord.gg/An6PA2a).  Follow us on [Twitter](https://twitter.com/netbootxyz) and like us on [Facebook](https://www.facebook.com/Cloud-Init-PXE)!

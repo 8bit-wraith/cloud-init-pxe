@@ -1,6 +1,6 @@
 # Cloud-Init PXE Studio - Modern PXE Boot & Cloud-Init Management
 
-A complete reimagining of the original netboot.xyz with a stunning modern interface that unifies PXE boot management and cloud-init configuration in one beautiful application. Say goodbye to dated interfaces and hello to a professional, intuitive experience.
+A complete reimagining of the original Cloud-Init-PXE with a stunning modern interface that unifies PXE boot management and cloud-init configuration in one beautiful application. Say goodbye to dated interfaces and hello to a professional, intuitive experience.
 
 ## ✨ Key Features
 
@@ -178,4 +178,4 @@ Feel free to submit issues and pull requests for improvements.
 
 ## License
 
-This project follows the same license as the original netboot.xyz project.
+This project follows the same license as the original Cloud-Init-PXE project.

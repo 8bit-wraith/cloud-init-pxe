@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <strong>A modern, dark-themed interface for managing cloud-init configurations with netboot.xyz</strong>
+  <strong>A modern, dark-themed interface for managing cloud-init configurations with Cloud-Init-PXE</strong>
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@
 
 ## 🌟 What is Cloud-Init Studio?
 
-Cloud-Init Studio is a complete reimagining of [netboot.xyz](https://netboot.xyz) with a unified, modern interface that combines PXE boot management with powerful cloud-init configuration capabilities. The beautiful dark-themed interface (with light mode option) provides an intuitive experience for managing your network boot environment and cloud-init configurations in one place.
+Cloud-Init Studio is a complete reimagining of [Cloud-Init-PXE](https://Cloud-Init-PXE) with a unified, modern interface that combines PXE boot management with powerful cloud-init configuration capabilities. The beautiful dark-themed interface (with light mode option) provides an intuitive experience for managing your network boot environment and cloud-init configurations in one place.
 
 Perfect for:
 
@@ -34,7 +34,7 @@ Perfect for:
 
 ### Core Features
 
-- 🎨 **Unified Modern Interface**: One beautiful interface for all netboot.xyz and cloud-init features
+- 🎨 **Unified Modern Interface**: One beautiful interface for all Cloud-Init-PXE and cloud-init features
 - 📊 **Dashboard**: Real-time system stats, quick actions, and status overview
 - 📝 **Boot Menu Management**: Edit and customize iPXE boot menus
 - ☁️ **Cloud-Init Manager**: Create, edit, and organize cloud-init configurations
@@ -185,7 +185,7 @@ boot
 
 ## 🏗️ Architecture
 
-Cloud-Init Studio is built as a non-invasive extension to netboot.xyz:
+Cloud-Init Studio is built as a non-invasive extension to Cloud-Init-PXE:
 
 ```
 ┌─────────────────────────────────────┐
@@ -195,7 +195,7 @@ Cloud-Init Studio is built as a non-invasive extension to netboot.xyz:
 ├─────────────────────────────────────┤
 │        Cloud-Init Handler           │
 ├─────────────────────────────────────┤
-│          netboot.xyz Core           │
+│          Cloud-Init-PXE Core           │
 ├─────────────────────────────────────┤
 │    Alpine Linux + Node.js + TFTP    │
 └─────────────────────────────────────┘
@@ -207,7 +207,7 @@ Cloud-Init Studio is built as a non-invasive extension to netboot.xyz:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `MENU_VERSION` | latest | netboot.xyz menu version |
+| `MENU_VERSION` | latest | Cloud-Init-PXE menu version |
 | `NGINX_PORT` | 80 | HTTP server port |
 | `WEB_APP_PORT` | 3000 | Web UI port |
 | `TFTPD_OPTS` | --secure | Additional TFTP options |
@@ -216,7 +216,7 @@ Cloud-Init Studio is built as a non-invasive extension to netboot.xyz:
 
 | Path | Description |
 |------|-------------|
-| `/config` | netboot.xyz configuration |
+| `/config` | Cloud-Init-PXE configuration |
 | `/assets` | Downloaded boot assets |
 | `/cloud-init` | Cloud-init configurations |
 
@@ -254,7 +254,7 @@ docker-compose -f docker-compose-cloud-init.yml up --build
 
 ## 🙏 Acknowledgments
 
-- Built on top of [netboot.xyz](https://netboot.xyz) - Thanks to the amazing team!
+- Built on top of [Cloud-Init-PXE](https://Cloud-Init-PXE) - Thanks to the amazing team!
 - Inspired by the need for better cloud-init tooling
 - Dark theme inspired by modern development tools
 

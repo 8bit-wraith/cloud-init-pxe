@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG VERSION
 ARG WEBAPP_VERSION
 
-LABEL build_version="netboot.xyz-cloud-init version: ${VERSION} Build-date: ${BUILD_DATE}"
+LABEL build_version="Cloud-Init-PXE-cloud-init version: ${VERSION} Build-date: ${BUILD_DATE}"
 LABEL maintainer="custom"
-LABEL org.opencontainers.image.description="netboot.xyz with cloud-init editing capabilities"
+LABEL org.opencontainers.image.description="Cloud-Init-PXE with cloud-init editing capabilities"
 
 RUN \
  apk update && \

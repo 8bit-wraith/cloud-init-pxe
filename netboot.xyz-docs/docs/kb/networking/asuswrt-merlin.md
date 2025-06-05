@@ -5,7 +5,7 @@ description: Asuswrt-Merlin Usage
 hide_table_of_contents: true
 ---
 
-This will enable legacy BIOS, and UEFI devices to PXE boot into the [netboot.xyz](https://github.com/netbootxyz/netboot.xyz) menu on Asuswrt-Merlin devices.
+This will enable legacy BIOS, and UEFI devices to PXE boot into the [netboot.xyz](https://github.com/cloud-init-pxe/cloud-init-pxe) menu on Asuswrt-Merlin devices.
 
 Assume your AsusWRT-Merlin router is 192.168.1.1; Login to GUI
 1. LAN -> DHCP Server -> Basic Config: Set "Enable the DHCP Server" to Yes; IP Pool Starting Address: 192.168.1.2; IP Pool Ending Address: 192.168.1.254

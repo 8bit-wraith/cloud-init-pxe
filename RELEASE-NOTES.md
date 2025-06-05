@@ -1,4 +1,4 @@
-# netboot.xyz Studio Release Notes
+# Cloud-Init-PXE Release Notes
 
 ## v2.0.0 - Complete UI Overhaul (2024-06-04)
 
@@ -6,7 +6,7 @@
 
 #### Unified Modern Interface
 
-- **Complete UI Overhaul**: Beautiful, modern interface that replaces the dated netboot.xyz UI
+- **Complete UI Overhaul**: Beautiful, modern interface that replaces the dated Cloud-Init-PXE UI
 - **Single Unified Experience**: All features in one cohesive interface - no more switching between different UIs
 - **Dark/Light Theme**: Gorgeous dark theme by default with smooth light theme option
 - **Responsive Design**: Perfect experience on desktop, tablet, and mobile devices
@@ -35,7 +35,7 @@
 #### Container
 
 - Based on Alpine Linux 3.21.3 for minimal footprint
-- Includes all netboot.xyz functionality
+- Includes all Cloud-Init-PXE functionality
 - Added Python support for cloud-init tools
 - Supervisor for process management
 
@@ -66,7 +66,7 @@ docker-compose -f docker-compose-cloud-init.yml up -d
 
 - Classic Interface: <http://localhost:3000/cloud-init>
 - Modern Interface: <http://localhost:3000/cloud-init-studio>
-- Main netboot.xyz: <http://localhost:3000>
+- Main Cloud-Init-PXE: <http://localhost:3000>
 
 ### 🔗 URLs
 
@@ -75,7 +75,7 @@ docker-compose -f docker-compose-cloud-init.yml up -d
 
 ### 🙏 Credits
 
-- Built on top of the excellent [netboot.xyz](https://netboot.xyz) project
+- Built on top of the excellent [Cloud-Init-PXE](https://Cloud-Init-PXE) project
 - Inspired by the need for better cloud-init management in PXE environments
 
 ---

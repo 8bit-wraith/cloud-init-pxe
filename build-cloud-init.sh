@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Build script for netboot.xyz with cloud-init support
+# Build script for Cloud-Init-PXE with cloud-init support
 
 set -e
 
-echo "Building netboot.xyz with cloud-init support..."
+echo "Building Cloud-Init-PXE with cloud-init support..."
 
 # Set build arguments
 BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
