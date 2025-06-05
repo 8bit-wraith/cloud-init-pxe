@@ -4,19 +4,19 @@ set -e
 TYPE=$1
 HARD_RELEASE="2.x"
 HARD_RC="2.x-RC"
-DEV_URL="dev.boot.netboot.xyz"
-STAGING_URL="staging.boot.netboot.xyz"
-PROD_URL="boot.netboot.xyz"
-NBXYZ_OVERRIDES=production
+DEV_URL="dev.boot.cloud-init-pxe.com"
+STAGING_URL="staging.boot.cloud-init-pxe.com"
+PROD_URL="boot.cloud-init-pxe.com"
+CIP_OVERRIDES=production
 
 # Set boot domain
 if [[ "${TYPE}" == "dev" ]]; then
   BOOT_DOMAIN="s3.amazonaws.com/${DEV_URL}/${GITHUB_SHA}"
   BOOT_VERSION="${GITHUB_SHA}"
 elif [[ "${TYPE}" == "pr" ]]; then
-  BOOT_DOMAIN="test.com"
+  BOOT_DOMAIN="test.cloud-init-pxe.com"
   BOOT_VERSION="test"
-  NBXYZ_OVERRIDES=default
+  CIP_OVERRIDES=default
 elif [[ "${TYPE}" == "rc" ]]; then
   BOOT_VERSION=$(cat version.txt)-RC
   BOOT_DOMAIN="${STAGING_URL}/${BOOT_VERSION}"
@@ -25,7 +25,7 @@ elif [[ "${TYPE}" == "release" ]]; then
   BOOT_DOMAIN="${PROD_URL}/${BOOT_VERSION}"
 elif [[ "${TYPE}" == "rolling" ]]; then
   HARD_RELEASE="2.x"
-  PROD_URL="boot.netboot.xyz"
+  PROD_URL="boot.cloud-init-pxe.com"
 fi
 
 # build release files 
@@ -38,7 +38,7 @@ if ! [[ "${TYPE}" == "rolling" ]]; then
     user_overrides.yml
 
   # Build release
-  docker build -t localbuild --build-arg NBXYZ_OVERRIDES=${NBXYZ_OVERRIDES} .
+  docker build -t localbuild --build-arg CIP_OVERRIDES=${CIP_OVERRIDES} .
   docker run --rm -i -v $(pwd):/buildout localbuild
 
   # Generate folder outputs
@@ -66,7 +66,7 @@ if [[ "${TYPE}" == "release" ]] || [[ "${TYPE}" == "rolling" ]] || [[ "${TYPE}" 
       -e "/^boot_version/c\boot_version: \"${HARD_RELEASE}\"" \
       -e "/^boot_domain/c\boot_domain: ${PROD_URL}" \
       user_overrides.yml
-    docker build -t localbuild --build-arg NBXYZ_OVERRIDES=${NBXYZ_OVERRIDES} .
+    docker build -t localbuild --build-arg CIP_OVERRIDES=${CIP_OVERRIDES} .
     docker run --rm -i -v $(pwd):/buildout localbuild
   fi
   if [[ "${TYPE}" == "rc" ]]; then
@@ -74,7 +74,7 @@ if [[ "${TYPE}" == "release" ]] || [[ "${TYPE}" == "rolling" ]] || [[ "${TYPE}" 
       -e "/^boot_version/c\boot_version: \"${HARD_RC}\"" \
       -e "/^boot_domain/c\boot_domain: ${STAGING_URL}/rc" \
       user_overrides.yml
-    docker build -t localbuild --build-arg NBXYZ_OVERRIDES=${NBXYZ_OVERRIDES} .
+    docker build -t localbuild --build-arg CIP_OVERRIDES=${CIP_OVERRIDES} .
     docker run --rm -i -v $(pwd):/buildout localbuild
   fi
   mkdir -p s3out-latest

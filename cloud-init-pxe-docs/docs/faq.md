@@ -27,7 +27,7 @@ From [syslinux - memdisk](https://www.syslinux.org/wiki/index.php/MEMDISK): The 
 
 To get around these limitations, especially since memdisk is not supported with UEFI, we have built a CI/CD system that consumes the ISOs from upstream projects and prepares the needed files to boot the operating system remotely as a release. In some cases this may involve a small modification to the init scripts in order to tune the network boot flexibility or handle multiple parts for larger operating systems. Those releases are added to the endpoints.yml in the main netboot.xyz repo and are then available for download.
 
-You can read more about our build system [here](https://github.com/netbootxyz/build-pipelines/blob/master/README.md).
+You can read more about our build system [here](https://github.com/cloudinitpxecom/build-pipelines/blob/master/README.md).
 
 ### My distribution uses ISOs for delivery, how can I see if they work?
 

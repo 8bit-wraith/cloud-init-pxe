@@ -77,12 +77,12 @@ The netboot.xyz container image is available from the GitHub Container Registry 
 
   <TabItem value="github" label="Github Container Registry" default>
     ```shell
-    docker pull ghcr.io/netbootxyz/netbootxyz
+    docker pull ghcr.io/cloudinitpxecom/cloudinitpxecom
     ```
   </TabItem>
   <TabItem value="rhel" label="Docker Hub">
     ```shell
-    docker pull netbootxyz/netbootxyz
+    docker pull cloudinitpxecom/cloudinitpxecom
     ```
   </TabItem>
 </Tabs>
@@ -93,7 +93,7 @@ The following snippets are examples of starting up the container.
 
 ```shell
 docker run -d \
-  --name=netbootxyz \
+  --name=cloudinitpxecom \
   -e MENU_VERSION=2.0.84             `# optional` \
   -e NGINX_PORT=80                   `# optional` \
   -e WEB_APP_PORT=3000               `# optional` \
@@ -103,15 +103,15 @@ docker run -d \
   -v /local/path/to/config:/config   `# optional` \
   -v /local/path/to/assets:/assets   `# optional` \
   --restart unless-stopped \
-  ghcr.io/netbootxyz/netbootxyz
+  ghcr.io/cloudinitpxecom/cloudinitpxecom
 ```
 
 **To update the image using Docker CLI:**
 
 ```shell
-docker pull ghcr.io/netbootxyz/netbootxyz   # pull the latest image down
-docker stop netbootxyz                      # stop the existing container
-docker rm netbootxyz                        # remove the image
+docker pull ghcr.io/cloudinitpxecom/cloudinitpxecom   # pull the latest image down
+docker stop cloudinitpxecom                      # stop the existing container
+docker rm cloudinitpxecom                        # remove the image
 docker run -d ...                           # previously ran start command
 ```
 
@@ -123,16 +123,16 @@ If the same folders are used your settings will remain. If you want to start fre
 
 ### Starting up the container with Docker Compose
 
-1. Copy [docker-compose.yml.example](https://github.com/netbootxyz/docker-netbootxyz/blob/master/docker-compose.yml.example) to docker-compose.yml
+1. Copy [docker-compose.yml.example](https://github.com/cloudinitpxecom/docker-cloudinitpxecom/blob/master/docker-compose.yml.example) to docker-compose.yml
 1. Edit as needed
-1. Run `docker compose up -d netbootxyz` to start containers in the background
-1. Run `docker compose logs -f netbootxyz` to view logs
+1. Run `docker compose up -d cloudinitpxecom` to start containers in the background
+1. Run `docker compose logs -f cloudinitpxecom` to view logs
 
 **To update the image using Docker Compose:**
 
 ```shell
-docker compose pull netbootxyz     # pull the latest image down
-docker compose up -d netbootxyz    # start containers in the background
+docker compose pull cloudinitpxecom     # pull the latest image down
+docker compose up -d cloudinitpxecom    # start containers in the background
 ```
 
 ### Accessing the container services
@@ -152,6 +152,6 @@ If you wish to remove the configuration, you can remove the local configuration 
 
 If you want to pull the Live Images images down to your own mirror and boot off them you will need to update the `live_endpoint` variable in `local-vars.ipxe` file within the web configuration interface.
 
-The [local-vars.ipxe](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/netbootxyz/templates/local-vars.ipxe.j2) is a file that is checked early during the boot [process](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/netbootxyz/templates/disks/netboot.xyz.j2#L99) and will load up variables into netboot.xyz. Using this file, you can set overriddes for variables early in the boot process.
+The [local-vars.ipxe](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/cloudinitpxecom/templates/local-vars.ipxe.j2) is a file that is checked early during the boot [process](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/cloudinitpxecom/templates/disks/netboot.xyz.j2#L99) and will load up variables into netboot.xyz. Using this file, you can set overriddes for variables early in the boot process.
 
-By default the `live_endpoint` variable is set to upstream location of `https://github.com/netbootxyz`. If you want to override this, set `live_endpoint` to your deployment IP or domain, e.g. `http://192.168.0.50:8080`. It will then redirect asset download to the local location you set for assets on port `8080` and you can download the assets by using the local assets menu down to your local server. This can result in much faster boot times.
+By default the `live_endpoint` variable is set to upstream location of `https://github.com/cloudinitpxecom`. If you want to override this, set `live_endpoint` to your deployment IP or domain, e.g. `http://192.168.0.50:8080`. It will then redirect asset download to the local location you set for assets on port `8080` and you can download the assets by using the local assets menu down to your local server. This can result in much faster boot times.

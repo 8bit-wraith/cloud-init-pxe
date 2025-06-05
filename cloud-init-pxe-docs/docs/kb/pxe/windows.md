@@ -61,6 +61,6 @@ With this configuration, you won't need to input the URL anymore when booting Wi
 
 :::note
 
-If you don't currently have a [local-vars.ipxe](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/development/roles/netbootxyz/templates/local-vars.ipxe.j2) file, you can create on in the root of the tftp directory.
+If you don't currently have a [local-vars.ipxe](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/development/roles/cloudinitpxecom/templates/local-vars.ipxe.j2) file, you can create on in the root of the tftp directory.
 
 :::

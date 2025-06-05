@@ -31,8 +31,8 @@ RUN \
  apk add --no-cache --virtual=build-dependencies \
    npm && \
  groupmod -g 1000 users && \
- useradd -u 911 -U -d /config -s /bin/false nbxyz && \
- usermod -G users nbxyz && \
+ useradd -u 911 -U -d /config -s /bin/false cip && \
+ usermod -G users cip && \
  mkdir /app \
        /config \
        /defaults 
@@ -52,7 +52,7 @@ EXPOSE 69/udp
 EXPOSE 80
 EXPOSE 3000
 
-COPY docker-netbootxyz/root/ /
+COPY docker-cloudinitpxecom/root/ /
 
 # default command
 CMD ["sh","/start.sh"]

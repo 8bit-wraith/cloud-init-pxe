@@ -42,4 +42,4 @@ html[data-theme='dark'] .header-github-link:before {
     no-repeat;
 }
 
-html[data-theme='dark'] .navbar .navbar__logo { content: url(../../static/img/nbxyz-logo-dark.svg) }
+html[data-theme='dark'] .navbar .navbar__logo { content: url(../../static/img/cip-logo-dark.svg) }

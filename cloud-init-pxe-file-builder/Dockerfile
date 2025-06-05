@@ -1,17 +1,17 @@
-ARG NBXYZ_OVERRIDES=default
+ARG CIP_OVERRIDES=default
 
-FROM ghcr.io/netbootxyz/builder:latest AS builder
+FROM ghcr.io/cloudinitpxecom/builder:latest AS builder
 
 # repo for build
 COPY . /ansible
 
-FROM builder AS netbootxyz-default
+FROM builder AS cloudinitpxecom-default
 ENV EXTRA_VARS=""
 
-FROM builder AS netbootxyz-production
-ENV EXTRA_VARS="--extra-vars @script/netbootxyz-overrides.yml"
+FROM builder AS cloudinitpxecom-production
+ENV EXTRA_VARS="--extra-vars @script/cloudinitpxecom-overrides.yml"
 
-FROM netbootxyz-${NBXYZ_OVERRIDES} AS final
+FROM cloudinitpxecom-${CIP_OVERRIDES} AS final
 RUN \
   echo "**** running ansible ****" && \
   cd /ansible && \

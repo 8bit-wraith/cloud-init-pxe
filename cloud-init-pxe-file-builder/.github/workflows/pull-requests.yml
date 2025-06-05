@@ -30,7 +30,7 @@ jobs:
 
     - name: Ansible lint
       run: |
-        ansible-lint -v roles/netbootxyz/tasks
+        ansible-lint -v roles/cloudinitpxecom/tasks
 
   build-pr:
     name: Build Pull Request

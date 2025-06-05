@@ -55,7 +55,7 @@ Is there a new version of an operating system out?  Have you found one that netw
 
 ### Testing New Features
 
-Under the **Utilities** menu on netboot.xyz, there's an option for ["netboot.xyz endpoints"](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/development/roles/netbootxyz/templates/menu/nbxyz.ipxe.j2).  Features or changes that have been merged into the development branch can be loaded here to be tested before they are merged into production. 
+Under the **Utilities** menu on netboot.xyz, there's an option for ["netboot.xyz endpoints"](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/development/roles/cloudinitpxecom/templates/menu/cip.ipxe.j2).  Features or changes that have been merged into the development branch can be loaded here to be tested before they are merged into production. 
 
 :::info
 
@@ -65,4 +65,4 @@ Version updates are typically deployed to the development endpoint and the prima
 
 ### Communication
 
-Feel free to open up an [issue](https://github.com/cloud-init-pxe/cloud-init-pxe/issues/new/choose) on Github or join us on our [Discord](https://discord.gg/An6PA2a) server.  Follow us on [Twitter](https://twitter.com/netbootxyz) or like us on [Facebook](https://www.facebook.com/netboot.xyz)!
+Feel free to open up an [issue](https://github.com/cloud-init-pxe/cloud-init-pxe/issues/new/choose) on Github or join us on our [Discord](https://discord.gg/An6PA2a) server.  Follow us on [Twitter](https://twitter.com/cloudinitpxecom) or like us on [Facebook](https://www.facebook.com/netboot.xyz)!

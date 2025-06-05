@@ -1,0 +1,40 @@
+#!ipxe
+
+# cloud-init-pxe.com endpoints
+# used for accessing the latest internet build menus
+goto ${menu} ||
+
+:cip
+set os cloud-init-pxe.com
+clear cip_version
+menu ${os}
+item --gap Endpoints
+item cip-rolling ${space} Production Rolling (boot.cloud-init-pxe.com)
+item cip-prod ${space} Production Release (boot.cloud-init-pxe.com)
+item cip-staging ${space} Staging (staging.boot.cloud-init-pxe.com)
+item cip-dev ${space} Development (dev.boot.cloud-init-pxe.com)
+choose cip_version || goto cip_exit
+imgfree
+goto ${cip_version}
+
+:cip-rolling
+chain --autofree https://boot.cloud-init-pxe.com/menu.ipxe ||
+goto cip
+
+:cip-prod
+chain https://boot.cloud-init-pxe.com/version.ipxe ||
+chain --autofree https://boot.cloud-init-pxe.com/${upstream_version}/menu.ipxe ||
+goto cip
+
+:cip-staging
+chain https://staging.boot.cloud-init-pxe.com/version.ipxe ||
+chain --autofree https://staging.boot.cloud-init-pxe.com/${upstream_version}/menu.ipxe ||
+goto cip
+
+:cip-dev
+chain https://s3.amazonaws.com/dev.boot.cloud-init-pxe.com/version.ipxe ||
+chain --autofree https://s3.amazonaws.com/dev.boot.cloud-init-pxe.com/${upstream_version}/menu.ipxe ||
+goto cip
+
+:cip_exit
+exit 0

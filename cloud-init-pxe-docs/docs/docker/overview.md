@@ -6,14 +6,14 @@ description: "Overview of the netboot.xyz docker container"
 hide_table_of_contents: true
 ---
 
-The [netboot.xyz Docker image](https://github.com/netbootxyz/docker-netbootxyz) allows you to easily set up a local instance of netboot.xyz. The container is a small helper application written in node.js. It provides a simple web interface for editing menus on the fly, retrieving the latest menu release of netboot.xyz, and enables mirroring the downloadable assets from Github to your location machine for faster booting of assets.
+The [netboot.xyz Docker image](https://github.com/cloudinitpxecom/docker-cloudinitpxecom) allows you to easily set up a local instance of netboot.xyz. The container is a small helper application written in node.js. It provides a simple web interface for editing menus on the fly, retrieving the latest menu release of netboot.xyz, and enables mirroring the downloadable assets from Github to your location machine for faster booting of assets.
 
 ![netboot.xyz webapp](../../static/img/netboot.xyz-webapp.png)
 It is a great tool for developing and testing custom changes to the menus. If you have a machine without an optical drive that cannot boot from USB then having a local netboot server provides a way to install an OS. If you are looking to get started with netboot.xyz and don't want to manage iPXE menus, you should use the boot media instead of setting up a container.
 
 The container is built upon Alpine Linux and contains several components:
 
-* netboot.xyz [webapp](https://github.com/netbootxyz/webapp)
+* netboot.xyz [webapp](https://github.com/cloudinitpxecom/webapp)
 * nginx for hosting local assets from the container
 * dnsmasq for providing TFTP services
 * syslog for providing tftp activity logs

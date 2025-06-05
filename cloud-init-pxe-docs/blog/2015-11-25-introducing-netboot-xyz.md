@@ -18,6 +18,6 @@ It's also a great place to just let people play around with new operating system
 
 Check it out when you get a chance and drop me some feedback or make a pull request if you see something I'm missing.  I've added a really easy way to test your pull request from the utility menu, all you need to do is enter in your github username and branch or hash of the commit you want to test.
 
-I'm still working on a bunch of [documents](http://netbootxyz.readthedocs.org/en/latest/) for demonstrating how easy it is to plug the 1MB [iPXE](https://ipxe.org) ISO into things like VMware Fusion, Virtual Box, Openstack, so bear with me while I try and get all of those available.
+I'm still working on a bunch of [documents](http://cloudinitpxecom.readthedocs.org/en/latest/) for demonstrating how easy it is to plug the 1MB [iPXE](https://ipxe.org) ISO into things like VMware Fusion, Virtual Box, Openstack, so bear with me while I try and get all of those available.
 
 Enjoy!

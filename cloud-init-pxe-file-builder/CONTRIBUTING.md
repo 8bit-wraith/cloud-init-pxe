@@ -59,15 +59,15 @@ idea, feel free to open up a Github [issue] or open up a [Pull Request].
 ### Communication Channels
 
 * [Discord](https://discord.gg/An6PA2a) Chat Server for Cloud-Init-PXE discussions, questions, and development
-* Follow us on [Twitter](https://twitter.com/netbootxyz) at [@netbootxyz](https://twitter.com/netbootxyz)
+* Follow us on [Twitter](https://twitter.com/cloudinitpxecom) at [@cloudinitpxecom](https://twitter.com/cloudinitpxecom)
   for the latest updates
-* Start a [discussion](https://github.com/netbootxyz/Cloud-Init-PXE/discussions) or share something cool you have done with the project.
+* Start a [discussion](https://github.com/cloudinitpxecom/Cloud-Init-PXE/discussions) or share something cool you have done with the project.
 
 ### Donate
 
-We have set up an [Open Collective](https://opencollective.com/netbootxyz) and [Github Sponsors](https://github.com/sponsors/netbootxyz) to open the project up to those who wish to donate to help out the project. This may cover hosting and domain fees, hardware for validation testing, or anything else that comes up in maintaining a project like this. Every little bit will help! If you enjoy the work we do, please support us!
+We have set up an [Open Collective](https://opencollective.com/cloudinitpxecom) and [Github Sponsors](https://github.com/sponsors/cloudinitpxecom) to open the project up to those who wish to donate to help out the project. This may cover hosting and domain fees, hardware for validation testing, or anything else that comes up in maintaining a project like this. Every little bit will help! If you enjoy the work we do, please support us!
 
 ## Enjoy and have fun!
 
-[issue]: https://github.com/netbootxyz/Cloud-Init-PXE/issues/new
-[Pull Request]: https://github.com/netbootxyz/Cloud-Init-PXE/pulls
+[issue]: https://github.com/cloudinitpxecom/Cloud-Init-PXE/issues/new
+[Pull Request]: https://github.com/cloudinitpxecom/Cloud-Init-PXE/pulls

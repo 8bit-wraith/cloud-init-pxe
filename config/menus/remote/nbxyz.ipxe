@@ -4,37 +4,37 @@
 # used for accessing the latest internet build menus
 goto ${menu} ||
 
-:nbxyz
+:cip
 set os netboot.xyz
-clear nbxyz_version
+clear cip_version
 menu ${os}
 item --gap Endpoints
-item nbxyz-rolling ${space} Production Rolling (boot.netboot.xyz)
-item nbxyz-prod ${space} Production Release (boot.netboot.xyz)
-item nbxyz-staging ${space} Staging (staging.boot.netboot.xyz)
-item nbxyz-dev ${space} Development (dev.boot.netboot.xyz)
-choose nbxyz_version || goto nbxyz_exit
+item cip-rolling ${space} Production Rolling (boot.netboot.xyz)
+item cip-prod ${space} Production Release (boot.netboot.xyz)
+item cip-staging ${space} Staging (staging.boot.netboot.xyz)
+item cip-dev ${space} Development (dev.boot.netboot.xyz)
+choose cip_version || goto cip_exit
 imgfree
-goto ${nbxyz_version}
+goto ${cip_version}
 
-:nbxyz-rolling
+:cip-rolling
 chain --autofree https://boot.netboot.xyz/menu.ipxe ||
-goto nbxyz
+goto cip
 
-:nbxyz-prod
+:cip-prod
 chain https://boot.netboot.xyz/version.ipxe ||
 chain --autofree https://boot.netboot.xyz/${upstream_version}/menu.ipxe ||
-goto nbxyz
+goto cip
 
-:nbxyz-staging
+:cip-staging
 chain https://staging.boot.netboot.xyz/version.ipxe ||
 chain --autofree https://staging.boot.netboot.xyz/${upstream_version}/menu.ipxe ||
-goto nbxyz
+goto cip
 
-:nbxyz-dev
+:cip-dev
 chain https://s3.amazonaws.com/dev.boot.netboot.xyz/version.ipxe ||
 chain --autofree https://s3.amazonaws.com/dev.boot.netboot.xyz/${upstream_version}/menu.ipxe ||
-goto nbxyz
+goto cip
 
-:nbxyz_exit
+:cip_exit
 exit 0

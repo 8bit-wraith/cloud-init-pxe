@@ -1,0 +1,13 @@
+---
+cloudinitpxecom_packages:
+  - dosfstools
+  - figlet
+  - gcc
+  - genisoimage
+  - git
+  - httpd
+  - libslirp-devel
+  - minizip-devel
+  - syslinux
+  - xz-devel
+  - make

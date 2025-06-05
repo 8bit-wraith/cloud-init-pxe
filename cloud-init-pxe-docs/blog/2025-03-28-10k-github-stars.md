@@ -36,7 +36,7 @@ If you've found netboot.xyz useful, consider:
 - Contributing code, documentation, or testing new features
 - Sharing your use cases and success stories
 - Joining our [Discord community](https://discord.gg/An6PA2a) to help others
-- Supporting the project through [GitHub Sponsors](https://github.com/sponsors/netbootxyz) or [Open Collective](https://opencollective.com/netbootxyz)
+- Supporting the project through [GitHub Sponsors](https://github.com/sponsors/cloudinitpxecom) or [Open Collective](https://opencollective.com/cloudinitpxecom)
 
 ## Thank You!
 

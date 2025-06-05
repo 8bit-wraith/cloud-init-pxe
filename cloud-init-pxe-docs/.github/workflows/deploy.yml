@@ -21,7 +21,7 @@ jobs:
       - name: Download external project files
         run: |
           wget https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe/master/CHANGELOG.md -O external/changelog.md
-          wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/README.md -O external/build-automation.md
+          wget https://raw.githubusercontent.com/cloudinitpxecom/build-pipelines/master/README.md -O external/build-automation.md
           wget https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe/master/CONTRIBUTING.md -O external/contributing.md
 
       - name: Setup Node.js

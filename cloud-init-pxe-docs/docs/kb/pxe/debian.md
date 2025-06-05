@@ -42,7 +42,7 @@ set preseedurl http://my.preseed.com/preseed.cfg
 preseed/url=${preseedurl}
 ```
 
-For more examples, you can view the netboot.xyz configuration for Debian [here](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/netbootxyz/templates/menu/debian.ipxe.j2).
+For more examples, you can view the netboot.xyz configuration for Debian [here](https://github.com/cloud-init-pxe/cloud-init-pxe/blob/master/roles/cloudinitpxecom/templates/menu/debian.ipxe.j2).
 
 ## Live Boot
 

@@ -272,7 +272,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Various version updates
-- Viewpoint attribute on boot.netboot.xyz index
+- Viewpoint attribute on boot.cloud-init-pxe.com index
 - Oracle Linux aarch64
 
 ### Changes
@@ -387,8 +387,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Proper rolling for boot.netboot.xyz implemented, endpoints.yml and defaults
-  are now pushed to boot.netboot.xyz upon update in development branch to
+- Proper rolling for boot.cloud-init-pxe.com implemented, endpoints.yml and defaults
+  are now pushed to boot.cloud-init-pxe.com upon update in development branch to
   ensure version updates can be consumed as identified. Allows for new versions
   to be available before a release.
 
@@ -615,7 +615,7 @@ All notable changes to this project will be documented in this file.
 
 - Can now download hybrid bootloaders that contain x86_64 Legacy and EFI builds in one image.
   Enables the user to use one ISO or USB key for multiple scenarios.
-- Ability to use custom URLs for menus instead of just relying on Github netboot.xyz-custom repo.
+- Ability to use custom URLs for menus instead of just relying on Github cloud-init-pxe.com-custom repo.
 
 ### Changed
 
@@ -659,7 +659,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Switches builder to netbootxyz docker image on Github Container Registry
+- Switches builder to cloudinitpxecom docker image on Github Container Registry
 - Simplfied Fedora Live menu
 
 ### Fixed
@@ -899,7 +899,7 @@ All notable changes to this project will be documented in this file.
 - K3OS
 - RHEL menu option back to Linux Menu
 - Support for text mode on RHEL/Fedora
-- netboot.xyz endpoints menu under Utilities for testing Dev/Staging/Prod endpoints
+- cloud-init-pxe.com endpoints menu under Utilities for testing Dev/Staging/Prod endpoints
 - Enables auto login for Rancher
 
 ## [2.0.4] - 2020-01-06
@@ -941,14 +941,14 @@ All notable changes to this project will be documented in this file.
 - Change flags on genisoimage reflect el-torito options
 - Move generate_signatures to end of playbook
 - Moves retrieval of latest menu version from about to menu to ensure variable is always loaded
-- Generates the version file for netboot.xyz site
+- Generates the version file for cloud-init-pxe.com site
 - Enable epel for packages like figlet
 - Fixes some discord messaging
 
 ## [2.0.0] - 2019-12-26
 
 ### Changes
-- Switches primary boot.netboot.xyz to deploy deployed with Ansible and sets up 2.x rolling release series
+- Switches primary boot.cloud-init-pxe.com to deploy deployed with Ansible and sets up 2.x rolling release series
 
 ## [1.9.9] - 2019-12-13
 

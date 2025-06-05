@@ -61,4 +61,4 @@ All downloads will automatically load into [**boot.netboot.xyz**](https://boot.n
 
 ### Checksums
 
-SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/cloud-init-pxe/cloud-init-pxe/tree/master/roles/netbootxyz/templates/disks).
+SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.netboot.xyz/ipxe/netboot.xyz-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/cloud-init-pxe/cloud-init-pxe/tree/master/roles/cloudinitpxecom/templates/disks).

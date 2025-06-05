@@ -4,7 +4,7 @@ menu Utilities
 item --gap Utilities:
 item uefishell ${space} UEFI Shell
 item --gap netboot.xyz tools:
-item nbxyz ${space} netboot.xyz endpoints
+item cip ${space} netboot.xyz endpoints
 choose --default ${menu} menu || goto utils_exit
 echo ${cls}
 goto ${menu} ||

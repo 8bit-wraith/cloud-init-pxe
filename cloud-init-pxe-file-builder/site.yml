@@ -2,7 +2,7 @@
 - hosts: localhost
   user: root
   roles:
-    - netbootxyz
+    - cloudinitpxecom
   vars_files:
     - endpoints.yml
     - user_overrides.yml

@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'endpoints.yml'
-      - 'roles/netbootxyz/defaults/main.yml'
+      - 'roles/cloudinitpxecom/defaults/main.yml'
     branches:
       - development
 
@@ -39,7 +39,7 @@ jobs:
     - name: Download endpoints.yml and main.yml from Development
       run: |
         wget https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe/development/endpoints.yml -O endpoints.yml
-        wget https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe/development/roles/netbootxyz/defaults/main.yml -O roles/netbootxyz/defaults/main.yml
+        wget https://raw.githubusercontent.com/cloud-init-pxe/cloud-init-pxe/development/roles/cloudinitpxecom/defaults/main.yml -O roles/cloudinitpxecom/defaults/main.yml
         chmod +x script/build_release
         
     - name: Build release

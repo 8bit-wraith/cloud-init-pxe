@@ -31,7 +31,7 @@ With a lot of help and expertise from [TheLamer (Ryan Kuba)](https://github.com/
 
 ### Moving netboot.xyz repository
 
-I will be moving the repo from my personal repository on github to the [netbootxyz](https://github.com/netbootxyz) organization to put everything in one central place. The existing links should redirect to the new location.
+I will be moving the repo from my personal repository on github to the [cloudinitpxecom](https://github.com/cloudinitpxecom) organization to put everything in one central place. The existing links should redirect to the new location.
 
 ### Discord
 
@@ -40,6 +40,6 @@ Over the last few weeks, we've been leveraging Discord more for communication fo
 
 ### Open Collective
 
-We have set up an [Open Collective](https://opencollective.com/netbootxyz) to open the project up to those who wish to donate to help out the project. This may cover hosting and domain fees, hardware for validation testing, or anything else that comes up in maintaining a project like this. Every little bit will help! If you enjoy the work we do, please support us!
+We have set up an [Open Collective](https://opencollective.com/cloudinitpxecom) to open the project up to those who wish to donate to help out the project. This may cover hosting and domain fees, hardware for validation testing, or anything else that comes up in maintaining a project like this. Every little bit will help! If you enjoy the work we do, please support us!
 
 Thanks again for all of your support and we hope to continue making this project more useful for our users!

@@ -18,7 +18,7 @@ netboot.xyz was originally a hosted only tool and used static source files that 
 
 #### Role structure
 
-The netbootxyz Ansible [role](https://github.com/cloud-init-pxe/cloud-init-pxe/tree/master/roles/netbootxyz) is located in the main netboot.xyz repository.  Most of the logic for netboot.xyz is contained in these areas:
+The cloudinitpxecom Ansible [role](https://github.com/cloud-init-pxe/cloud-init-pxe/tree/master/roles/cloudinitpxecom) is located in the main netboot.xyz repository.  Most of the logic for netboot.xyz is contained in these areas:
 
 * `defaults/main.yml` - Consists default settings for deployment, OS versions, Utilities, and Bootloaders
 * `tasks/*` - Contains all tasks for rendering templates and compiling iPXE bootloaders 
@@ -94,5 +94,5 @@ The menu will add an option for custom menus and attempt to load into custom/cus
 A sample menu is provided to demonstrate how to configure and set up a menu. You can copy the custom directory from the repo:
 
 ```bash
-cp etc/netbootxyz/custom /etc/netbootxyz/custom
+cp etc/cloudinitpxecom/custom /etc/cloudinitpxecom/custom
 ```

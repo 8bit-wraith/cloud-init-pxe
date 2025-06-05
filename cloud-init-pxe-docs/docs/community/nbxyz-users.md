@@ -1,5 +1,5 @@
 ---
-id: nbxyz-users
+id: cip-users
 title: netboot.xyz around the Internet
 description: News, articles, and links from around the world related to netboot.xyz
 sidebar_label: Users
@@ -38,6 +38,6 @@ hide_table_of_contents: true
 - [JetKVM - Hardware KVM with suppport for netboot.xyz](https://jetkvm.com/)
 - [Quickemu](https://github.com/quickemu-project/quickemu)
 - [Tinkerbell](https://tinkerbell.org/examples/netboot-xyz/)
-- [u-root](https://github.com/u-root/u-root/blob/main/cmds/exp/netbootxyz/netbootxyz.go)
+- [u-root](https://github.com/u-root/u-root/blob/main/cmds/exp/cloudinitpxecom/cloudinitpxecom.go)
 
 And many other places as well. If you find us somewhere on the net, update this page!

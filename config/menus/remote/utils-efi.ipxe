@@ -21,9 +21,9 @@ item uefishell ${space} UEFI Shell
 item zfsbootmenu ${space} ZFSBootMenu
 item --gap netboot.xyz tools:
 item cmdline ${space} Kernel cmdline params: [${cmdline}]
-item nbxyz_custom_url ${space} Set custom menu [url: ${custom_url}]
-item nbxyz_custom_github ${space} Set Github username [user: ${github_user}]
-item nbxyz ${space} netboot.xyz endpoints
+item cip_custom_url ${space} Set custom menu [url: ${custom_url}]
+item cip_custom_github ${space} Set Github username [user: ${github_user}]
+item cip ${space} netboot.xyz endpoints
 choose --default ${menu} menu || goto utils_exit
 echo ${cls}
 goto ${menu} ||
@@ -92,7 +92,7 @@ kernel ${live_endpoint}/asset-mirror/releases/download/7.20-014832f7/memtest64.e
 boot
 goto utils_menu
 
-:nbxyz_custom_url
+:cip_custom_url
 echo If you have a customized menu you would like to load into netboot.xyz
 echo set the base path url to your custom ipxe files here. 
 echo It will look for custom.ipxe in that path as the entry point.
@@ -100,7 +100,7 @@ echo
 echo -n Please enter your custom http url here: ${} && read custom_url
 goto utils_menu
 
-:nbxyz_custom_github
+:cip_custom_github
 echo Make sure you have a fork of https://github.com/cloud-init-pxe/cloud-init-pxe-custom.
 echo You can then customize your fork as needed and set up your own custom options.
 echo Once your username is set, a custom option will appear on the main menu.

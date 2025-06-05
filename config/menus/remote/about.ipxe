@@ -21,12 +21,12 @@ item exit ${bold}Exit back to main menu...${boldoff}
 item --gap --  ${fg_whi}${bold}--Thanks------------------------------------------------------------------
 item about ${fg_gre}${bold}Thanks for your support and let us know how we can improve!
 item --gap --  ${fg_whi}${bold}--X-----------------------------------------------------------------------
-item about ${fg_cya}${bold}Follow us on X: ${fg_whi}${bold}@netbootxyz
+item about ${fg_cya}${bold}Follow us on X: ${fg_whi}${bold}@cloudinitpxecom
 item --gap --  ${fg_whi}${bold}--Discord-----------------------------------------------------------------
 item about ${fg_mag}${bold}Join us on Discord: ${fg_whi}${bold}https://discord.gg/An6PA2a
 item --gap --  ${fg_whi}${bold}--Sponsorship-------------------------------------------------------------
-item about ${fg_gre}${bold}Open Collective: ${fg_whi}${bold}https://opencollective.com/netbootxyz
-item about ${fg_gre}${bold}Github Sponsors: ${fg_whi}${bold}https://github.com/sponsors/netbootxyz
+item about ${fg_gre}${bold}Open Collective: ${fg_whi}${bold}https://opencollective.com/cloudinitpxecom
+item about ${fg_gre}${bold}Github Sponsors: ${fg_whi}${bold}https://github.com/sponsors/cloudinitpxecom
 item --gap --  ${fg_whi}${bold}--Merch-------------------------------------------------------------------
 item about ${fg_gre}${bold}netboot.xyz store: ${fg_whi}${bold}https://store.netboot.xyz
 item --gap --  ${fg_whi}${bold}-----------------------------------------------------------------

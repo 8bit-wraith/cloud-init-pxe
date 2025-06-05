@@ -12,3 +12,8 @@ build/
 assets/
 config/menus/local/
 config/log/
+.DS_Store
+.claude
+.cursorrules
+.roo
+ .DS_Store

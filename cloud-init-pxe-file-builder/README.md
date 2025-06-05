@@ -1,11 +1,11 @@
-## Cloud-Init-PXE [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Your%20favorite%20operating%20systems%20in%20one%20place!&url=https://Cloud-Init-PXE&hashtags=netbootxyz,ipxe,pxe,linux,tech,code)
+## Cloud-Init-PXE [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Your%20favorite%20operating%20systems%20in%20one%20place!&url=https://Cloud-Init-PXE&hashtags=cloudinitpxecom,ipxe,pxe,linux,tech,code)
 
 Your favorite operating systems in one place!
 
-[![Build Status](https://github.com/netbootxyz/Cloud-Init-PXE/workflows/release/badge.svg)](https://github.com/netbootxyz/Cloud-Init-PXE/actions?query=workflow%3Arelease)
+[![Build Status](https://github.com/cloudinitpxecom/Cloud-Init-PXE/workflows/release/badge.svg)](https://github.com/cloudinitpxecom/Cloud-Init-PXE/actions?query=workflow%3Arelease)
 [![Discord](https://img.shields.io/discord/425186187368595466)](https://discord.gg/An6PA2a)
-[![Release](https://img.shields.io/github/v/release/netbootxyz/Cloud-Init-PXE?color=hunter%20green)](https://github.com/netbootxyz/Cloud-Init-PXE/releases/latest)
-![GitHub all releases](https://img.shields.io/github/downloads/netbootxyz/Cloud-Init-PXE/total)
+[![Release](https://img.shields.io/github/v/release/cloudinitpxecom/Cloud-Init-PXE?color=hunter%20green)](https://github.com/cloudinitpxecom/Cloud-Init-PXE/releases/latest)
+![GitHub all releases](https://img.shields.io/github/downloads/cloudinitpxecom/Cloud-Init-PXE/total)
 
 ![Cloud-Init-PXE menu](https://Cloud-Init-PXE/images/Cloud-Init-PXE.gif)
 
@@ -51,7 +51,7 @@ Your favorite operating systems in one place!
 |USB/SD Card| [Cloud-Init-PXE-rpi4-sdcard.img](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-rpi4-sdcard.img)| Raspberry Pi 4 - USB/SD Card Image|
 |DHCP-snp| [Cloud-Init-PXE-rpi4-snp.efi](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-rpi4-snp.efi)| Raspberry Pi 4 - EFI Image|
 
-SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/netbootxyz/Cloud-Init-PXE/tree/master/ipxe/disks).
+SHA256 checksums are generated during each build of iPXE and are located [here](https://boot.Cloud-Init-PXE/ipxe/Cloud-Init-PXE-sha256-checksums.txt).  You can also view the scripts that are embedded into the images [here](https://github.com/cloudinitpxecom/Cloud-Init-PXE/tree/master/ipxe/disks).
 
 ### What is Cloud-Init-PXE?
 
@@ -77,7 +77,7 @@ See [Cloud-Init-PXE](https://Cloud-Init-PXE) for all documentation.  Some links 
 * [FAQ](https://Cloud-Init-PXE/docs/faq)
 * [Blog](https://Cloud-Init-PXE/blog)
 
-If you'd like to contribute to the documentation, the Cloud-Init-PXE documentation is located at [Cloud-Init-PXE-docs](https://github.com/netbootxyz/Cloud-Init-PXE-docs).
+If you'd like to contribute to the documentation, the Cloud-Init-PXE documentation is located at [Cloud-Init-PXE-docs](https://github.com/cloudinitpxecom/Cloud-Init-PXE-docs).
 
 ### Self Hosting Cloud-Init-PXE
 
@@ -112,7 +112,7 @@ Using the overrides file, you can override all of the settings from the defaults
 
 #### Self Hosted Custom Options
 
-In addition to being able to host Cloud-Init-PXE locally, you can also create your own custom templates for custom menus within Cloud-Init-PXE.  Please see [Custom User Menus](etc/netbootxyz/custom/README.md) for more information.
+In addition to being able to host Cloud-Init-PXE locally, you can also create your own custom templates for custom menus within Cloud-Init-PXE.  Please see [Custom User Menus](etc/cloudinitpxecom/custom/README.md) for more information.
 
 ### What Operating Systems are currently available on Cloud-Init-PXE?
 
@@ -214,8 +214,8 @@ In addition to being able to host Cloud-Init-PXE locally, you can also create yo
 
 ### Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/netbootxyz/Cloud-Init-PXE.svg)](https://starchart.cc/netbootxyz/Cloud-Init-PXE)
+[![Stargazers over time](https://starchart.cc/cloudinitpxecom/Cloud-Init-PXE.svg)](https://starchart.cc/cloudinitpxecom/Cloud-Init-PXE)
 
 ### Feedback
 
-Feel free to open up an [issue](https://github.com/netbootxyz/Cloud-Init-PXE/issues) on Github or ping us on [Discord](https://discord.gg/An6PA2a).  Follow us on [Twitter](https://twitter.com/netbootxyz) and like us on [Facebook](https://www.facebook.com/Cloud-Init-PXE)!
+Feel free to open up an [issue](https://github.com/cloudinitpxecom/Cloud-Init-PXE/issues) on Github or ping us on [Discord](https://discord.gg/An6PA2a).  Follow us on [Twitter](https://twitter.com/cloudinitpxecom) and like us on [Facebook](https://www.facebook.com/Cloud-Init-PXE)!

@@ -32,7 +32,7 @@ If applicable, add screenshots to help explain your problem.
 **Container Logs**
 ```
 # Please paste relevant container logs here
-docker logs netbootxyz-cloud-init
+docker logs cloudinitpxecom-cloud-init
 ```
 
 **Additional context**
