@@ -1,0 +1,136 @@
+#cloud-config
+# Example: Web Server with NGINX and SSL
+
+# Set hostname
+hostname: web-server
+fqdn: web-server.example.com
+
+# Update system packages
+package_update: true
+package_upgrade: true
+
+# Install required packages
+packages:
+  - nginx
+  - certbot
+  - python3-certbot-nginx
+  - ufw
+  - fail2ban
+  - htop
+  - curl
+  - git
+
+# Configure users
+users:
+  - name: webadmin
+    groups: [sudo, www-data]
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3Nza... your-ssh-key-here
+
+# Write files
+write_files:
+  - path: /etc/nginx/sites-available/default
+    content: |
+      server {
+          listen 80 default_server;
+          listen [::]:80 default_server;
+          
+          root /var/www/html;
+          index index.html index.htm index.nginx-debian.html;
+          
+          server_name _;
+          
+          location / {
+              try_files $uri $uri/ =404;
+          }
+          
+          # Security headers
+          add_header X-Frame-Options "SAMEORIGIN" always;
+          add_header X-XSS-Protection "1; mode=block" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header Referrer-Policy "no-referrer-when-downgrade" always;
+      }
+    owner: root:root
+    permissions: '0644'
+
+  - path: /var/www/html/index.html
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <title>Welcome to Your Web Server</title>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  margin: 40px;
+                  background-color: #f0f0f0;
+              }
+              .container {
+                  background-color: white;
+                  padding: 20px;
+                  border-radius: 10px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+              }
+              h1 { color: #333; }
+              p { color: #666; }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <h1>Welcome to Your Web Server!</h1>
+              <p>This server was automatically configured using cloud-init.</p>
+              <p>Server Time: <span id="time"></span></p>
+              <script>
+                  document.getElementById('time').textContent = new Date().toLocaleString();
+              </script>
+          </div>
+      </body>
+      </html>
+    owner: www-data:www-data
+    permissions: '0644'
+
+# Configure firewall
+runcmd:
+  # Enable UFW firewall
+  - ufw allow 22/tcp
+  - ufw allow 80/tcp
+  - ufw allow 443/tcp
+  - ufw --force enable
+  
+  # Start and enable services
+  - systemctl start nginx
+  - systemctl enable nginx
+  - systemctl start fail2ban
+  - systemctl enable fail2ban
+  
+  # Set up automatic security updates
+  - echo 'Unattended-Upgrade::Automatic-Reboot "false";' >> /etc/apt/apt.conf.d/50unattended-upgrades
+  - echo 'Unattended-Upgrade::Automatic-Reboot-Time "02:00";' >> /etc/apt/apt.conf.d/50unattended-upgrades
+  
+  # Create a simple monitoring script
+  - |
+    cat > /usr/local/bin/check-services.sh << 'EOF'
+    #!/bin/bash
+    services=("nginx" "ssh" "fail2ban")
+    for service in "${services[@]}"; do
+        if ! systemctl is-active --quiet $service; then
+            echo "Warning: $service is not running!"
+            systemctl start $service
+        fi
+    done
+    EOF
+  - chmod +x /usr/local/bin/check-services.sh
+  - echo '*/5 * * * * root /usr/local/bin/check-services.sh' >> /etc/crontab
+
+# Final message
+final_message: |
+  Cloud-init has finished!
+  Web server is ready at http://$HOSTNAME
+  SSH access: ssh webadmin@$HOSTNAME
+  
+  Next steps:
+  1. Configure your domain DNS
+  2. Run: sudo certbot --nginx -d your-domain.com
+  3. Upload your website content to /var/www/html/
