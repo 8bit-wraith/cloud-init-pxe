@@ -39,7 +39,7 @@ goto ${selected}
 echo Booting Ubuntu 22.04 LTS with Cloud-Init support...
 kernel http://archive.ubuntu.com/ubuntu/dists/jammy/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/linux
 initrd http://archive.ubuntu.com/ubuntu/dists/jammy/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/initrd.gz
-imgargs linux auto=true priority=critical url=http://${next-server}:3000/cloud-init/configs/ubuntu.yaml
+imgargs linux auto=true priority=critical url=http://${next-server}:3434/cloud-init/configs/ubuntu.yaml
 boot
 
 :debian
@@ -58,7 +58,7 @@ goto start
 
 :cloud-config
 echo Cloud-Init Configuration Editor
-echo Visit http://${next-server}:3000 to create custom configs!
+echo Visit http://${next-server}:3434 to create custom configs!
 sleep 5
 goto start
 

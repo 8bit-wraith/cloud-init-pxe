@@ -1,0 +1,119 @@
+#cloud-config
+# Cloud-Init-PXE: Smart Kitchen Display
+# "Your recipes, weather, and calendar - virus-free!" - Trish 👨‍🍳
+
+hostname: kitchen-display
+manage_etc_hosts: true
+
+# Minimal user for kiosk mode
+users:
+  - name: kitchen
+    shell: /bin/bash
+    groups: [audio, video]
+    
+# Lightweight packages for kitchen display
+packages:
+  - chromium-browser
+  - unclutter
+  - xserver-xorg
+  - xinit
+  - lightdm
+  - nodejs
+  - git
+
+write_files:
+  # Auto-login configuration
+  - path: /etc/lightdm/lightdm.conf
+    content: |
+      [SeatDefaults]
+      autologin-user=kitchen
+      autologin-user-timeout=0
+      
+  # Kiosk mode script
+  - path: /home/kitchen/start-kitchen.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      # Hide mouse when idle
+      unclutter -idle 3 &
+      
+      # Disable screen saver
+      xset s off
+      xset -dpms
+      xset s noblank
+      
+      # Start kitchen dashboard
+      chromium-browser \
+        --kiosk \
+        --no-first-run \
+        --disable-translate \
+        --disable-infobars \
+        --disable-session-crashed-bubble \
+        --disable-features=TranslateUI \
+        --overscroll-history-navigation=0 \
+        http://localhost:8080/kitchen-dashboard
+        
+  # Simple kitchen dashboard
+  - path: /var/www/html/kitchen-dashboard/index.html
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Kitchen Command Center</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 100vh;
+          }
+          .widget {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,255,255,0.3);
+          }
+          h2 { color: #00ffff; }
+          .recipe { font-size: 1.2em; }
+          .weather { font-size: 2em; text-align: center; }
+          .timer { font-size: 3em; text-align: center; color: #00ff00; }
+        </style>
+      </head>
+      <body>
+        <div class="widget">
+          <h2>Today's Recipe</h2>
+          <div class="recipe">Loading recipes...</div>
+        </div>
+        <div class="widget">
+          <h2>Weather</h2>
+          <div class="weather">☀️ 72°F</div>
+        </div>
+        <div class="widget">
+          <h2>Timer</h2>
+          <div class="timer">00:00</div>
+        </div>
+        <div class="widget">
+          <h2>Shopping List</h2>
+          <ul id="shopping">
+            <li>Milk</li>
+            <li>Eggs</li>
+            <li>Bread</li>
+          </ul>
+        </div>
+      </body>
+      </html>
+
+# Configure auto-start
+runcmd:
+  - mkdir -p /var/www/html/kitchen-dashboard
+  - systemctl enable lightdm
+  - echo '@/home/kitchen/start-kitchen.sh' >> /home/kitchen/.xsession
+  - chown -R kitchen:kitchen /home/kitchen
+  - echo "Kitchen Display: Always fresh, never infected!" > /etc/motd
+
+final_message: "Kitchen Display ready! No saved passwords, no tracking! 🍳"

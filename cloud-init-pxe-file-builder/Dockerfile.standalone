@@ -1,0 +1,42 @@
+# Cloud-Init-PXE Standalone Builder
+# "Building the future of PXE!" - Trish 🚀
+
+FROM ubuntu:22.04 AS builder
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    ansible \
+    build-essential \
+    curl \
+    git \
+    isolinux \
+    liblzma-dev \
+    libz-dev \
+    mtools \
+    python3 \
+    python3-pip \
+    python3-jinja2 \
+    syslinux \
+    wget \
+    xorriso \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install ansible collections
+RUN ansible-galaxy collection install community.general
+
+# Set up working directory
+WORKDIR /ansible
+
+# Copy the ansible playbook and configs
+COPY . /ansible
+
+# Build iPXE with our custom configuration
+RUN ansible-playbook site.yml --extra-vars @cloud-init-pxe-custom.yml
+
+# Runtime stage - extract built files
+FROM alpine:latest
+
+COPY --from=builder /var/www/html/ /mnt/
+COPY docker-build-root/ /
+
+ENTRYPOINT [ "/dumper.sh" ]

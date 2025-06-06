@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud-Init-PXE Boot Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            margin: 40px;
+        }
+        h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,255,255,0.3);
+        }
+        .feature {
+            background-color: #3a3a3a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #00ff00;
+        }
+        a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-shadow: 0 0 5px #00ffff;
+        }
+        .emoji {
+            font-size: 1.5em;
+        }
+        .trish {
+            color: #ff00ff;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Cloud-Init-PXE Boot Server v3.0-AI</h1>
+        <p><em>"Intelligence from the first byte!"</em></p>
+        
+        <div class="feature">
+            <h2>📁 Available Boot Files</h2>
+            <ul>
+                <li><a href="/cloud-init-pxe.efi">cloud-init-pxe.efi</a> - UEFI Boot Image (1.1MB)</li>
+                <li><a href="/menu.ipxe">menu.ipxe</a> - Custom Boot Menu</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h2>🔧 DHCP Configuration</h2>
+            <p>Configure your DHCP server with:</p>
+            <ul>
+                <li><strong>Option 66:</strong> <code>${YOUR_SERVER_IP}</code></li>
+                <li><strong>Option 67:</strong> <code>cloud-init-pxe.efi</code></li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h2>✨ Features</h2>
+            <ul>
+                <li class="emoji">☁️ Cloud-Init Integration</li>
+                <li class="emoji">🤖 AI-Enhanced Boot (Coming Soon!)</li>
+                <li class="emoji">🎨 Modern Boot Interface</li>
+                <li class="emoji">📊 Multiple OS Support</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h2>🌐 Quick Links</h2>
+            <ul>
+                <li><a href="http://localhost:3000">Web Management Interface</a></li>
+                <li><a href="/menu.ipxe">View Boot Menu Source</a></li>
+            </ul>
+        </div>
+
+        <p class="trish">💫 Trish from Accounting says: "This is the most exciting boot server I've ever seen!"</p>
+    </div>
+</body>
+</html>

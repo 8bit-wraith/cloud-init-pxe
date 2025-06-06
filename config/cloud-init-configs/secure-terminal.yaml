@@ -1,0 +1,104 @@
+#cloud-config
+# Cloud-Init-PXE: Secure Banking/Work Terminal
+# "Zero persistence = Zero malware!" - Trish 🔒
+
+hostname: secure-terminal
+manage_etc_hosts: true
+
+# Minimal secure user
+users:
+  - name: secure
+    shell: /bin/bash
+    # No sudo for security
+    
+# Security-focused packages
+packages:
+  - firefox-esr
+  - firejail
+  - apparmor
+  - apparmor-utils
+  - clamav
+  - rkhunter
+  - fail2ban
+  - ufw
+
+write_files:
+  # Strict Firefox profile
+  - path: /home/secure/.mozilla/firefox/secure.default/user.js
+    content: |
+      // Security hardening
+      user_pref("privacy.firstparty.isolate", true);
+      user_pref("privacy.resistFingerprinting", true);
+      user_pref("privacy.trackingprotection.enabled", true);
+      user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+      user_pref("network.cookie.cookieBehavior", 1);
+      user_pref("network.dns.disablePrefetch", true);
+      user_pref("dom.event.clipboardevents.enabled", false);
+      
+  # Firejail desktop entries
+  - path: /home/secure/.local/share/applications/firefox-secure.desktop
+    content: |
+      [Desktop Entry]
+      Name=Secure Firefox
+      Exec=firejail --private --dns=1.1.1.1 firefox -no-remote
+      Icon=firefox
+      Type=Application
+      Categories=Network;WebBrowser;
+      
+  # Firewall rules
+  - path: /etc/ufw/applications.d/secure-terminal
+    content: |
+      [SecureTerminal]
+      title=Secure Terminal
+      description=Minimal secure browsing
+      ports=53/udp|80/tcp|443/tcp
+
+# Security configuration
+runcmd:
+  # Enable AppArmor
+  - systemctl enable apparmor
+  - aa-enforce /etc/apparmor.d/*
+  
+  # Configure firewall
+  - ufw --force enable
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw limit ssh
+  
+  # Set up ClamAV
+  - freshclam
+  - systemctl enable clamav-freshclam
+  
+  # Configure fail2ban
+  - systemctl enable fail2ban
+  
+  # Read-only home directory bind mount
+  - |
+    cat > /etc/systemd/system/secure-home.service << EOF
+    [Unit]
+    Description=Read-only secure home
+    Before=display-manager.service
+    
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/mount -o bind,ro /home/secure /home/secure
+    RemainAfterExit=yes
+    
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+  
+  - systemctl enable secure-home.service
+  
+  # Security message
+  - |
+    cat > /etc/issue << EOF
+    ╔═══════════════════════════════════════╗
+    ║     SECURE TERMINAL - NO PERSISTENCE  ║
+    ║   Everything is wiped on next boot!   ║
+    ║     Perfect for banking & sensitive   ║
+    ║            transactions!              ║
+    ╚═══════════════════════════════════════╝
+    EOF
+
+final_message: "Secure Terminal ready! Nothing saved, everything safe! 🔒"

@@ -1,0 +1,131 @@
+#!ipxe
+# Cloud-Init-PXE Custom Boot Script
+# "Boot with Intelligence!" - Approved by Trish 🎉
+
+# Enhanced color scheme for modern look
+set esc:hex 1b
+set bold ${esc:string}[1m
+set boldoff ${esc:string}[22m
+set fg_gre ${esc:string}[32m
+set fg_cya ${esc:string}[36m
+set fg_whi ${esc:string}[37m
+set fg_mag ${esc:string}[35m
+set fg_yel ${esc:string}[33m
+
+# Cloud-Init-PXE specific variables
+set site_name cloud-init-pxe.com
+set boot_domain ${boot_domain}
+set version 3.0-AI
+set ai_enabled true
+
+# Error messages with personality
+set VARS_ERR ${fg_yel}Hmm, can't find local vars... Let me try TFTP! 🤔${fg_whi}
+set TFTP_ERR ${fg_yel}TFTP didn't work... Switching to HTTPS! 🔄${fg_whi}
+set V6_ERR ${fg_yel}IPv6 seems sleepy... Trying IPv4! 😴${fg_whi}
+set HTTPS_ERR ${fg_yel}HTTPS is being shy... Let's try HTTP! 🙈${fg_whi}
+set HTTP_ERR ${fg_yel}Network's having a moment... Local boot it is! 🏠${fg_whi}
+
+:start
+echo
+echo ${bold}${fg_cya}╔═══════════════════════════════════════╗${boldoff}
+echo ${bold}${fg_cya}║  Cloud-Init-PXE AI Boot System ${version}  ║${boldoff}
+echo ${bold}${fg_cya}╚═══════════════════════════════════════╝${boldoff}
+echo ${fg_mag}"Intelligence from the first byte!"${fg_whi}
+echo ${fg_gre}Trish says: "This is going to be AMAZING!" 🌟${fg_whi}
+echo
+
+# AI Assistant check
+isset ${ai_enabled} && echo ${fg_yel}🤖 AI Assistant: Ready to help!${fg_whi} ||
+
+prompt --key m --timeout 4000 Press ${bold}${fg_cya}m${boldoff}${fg_whi} for menu or wait for auto-boot... && goto menu || goto dhcp
+
+:dhcp
+echo
+echo ${fg_cya}🌐 Acquiring network configuration...${fg_whi}
+dhcp || goto netconfig
+isset ${next-server} && isset ${proxydhcp/next-server} && goto choose-tftp || set tftp-server ${next-server} && goto load-custom-ipxe
+
+:choose-tftp
+chain tftp://${next-server}/local-vars.ipxe || echo ${VARS_ERR}
+isset ${use_proxydhcp_settings} && iseq ${use_proxydhcp_settings} true && goto set-next-server ||
+prompt --key p --timeout 4000 ${fg_yel}Proxy detected! Press ${bold}p${boldoff} to use ${proxydhcp/next-server}...${fg_whi} && set use_proxydhcp_settings true || set use_proxydhcp_settings false
+goto set-next-server
+
+:set-next-server
+iseq ${use_proxydhcp_settings} true && set tftp-server ${proxydhcp/next-server} || set tftp-server ${next-server}
+goto load-custom-ipxe
+
+:load-custom-ipxe
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe.kpxe && goto tftpmenu ||
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe-undionly.kpxe && goto tftpmenu ||
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe.efi && goto tftpmenu ||
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe-snp.efi && goto tftpmenu ||
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe-snponly.efi && goto tftpmenu ||
+isset ${tftp-server} && iseq ${filename} cloud-init-pxe-arm64.efi && goto tftpmenu ||
+goto menu
+
+:menu
+echo ${fg_cya}🚀 Loading Cloud-Init-PXE Menu...${fg_whi}
+# Check for cloud-init configurations first
+chain --autofree http://${boot_domain}/cloud-init/menu.ipxe || 
+chain --autofree http://${boot_domain}/menu.ipxe || goto failsafe
+
+:failsafe
+menu ${bold}${fg_cya}Cloud-Init-PXE Failsafe Menu${boldoff}
+item --gap ${fg_mag}── System Options ──${fg_whi}
+item localboot ${fg_gre}Boot to local drive${fg_whi}
+item netconfig ${fg_yel}Manual network configuration${fg_whi}
+item vlan ${fg_yel}Manual VLAN configuration${fg_whi}
+item --gap
+item --gap ${fg_mag}── Troubleshooting ──${fg_whi}
+item retry ${fg_cya}Retry boot sequence${fg_whi}
+item debug ${fg_yel}iPXE Debug Shell${fg_whi}
+item reboot ${fg_yel}Reboot System${fg_whi}
+item --gap
+item --gap ${fg_gre}Trish says: "Don't worry, we'll figure it out!" 💪${fg_whi}
+choose failsafe_choice || exit
+goto ${failsafe_choice}
+
+:netconfig
+echo ${fg_cya}Network Configuration Assistant${fg_whi}
+echo ${fg_gre}Let's get you connected! 🌐${fg_whi}
+echo
+echo Available interfaces:
+ifstat
+imgfree
+echo -n Set network interface number [0 for net0]: ${} && read net
+isset ${net} || set net 0
+echo -n IP Address: && read net${net}/ip
+echo -n Subnet mask: && read net${net}/netmask
+echo -n Gateway: && read net${net}/gateway
+echo -n DNS Server: && read dns
+ifopen net${net}
+echo ${fg_gre}Attempting to connect...${fg_whi}
+goto menu || goto failsafe
+
+:tftpmenu
+chain tftp://${tftp-server}/local-vars.ipxe || echo ${VARS_ERR}
+isset ${hostname} && chain --autofree tftp://${tftp-server}/HOSTNAME-${hostname}.ipxe || 
+chain --autofree tftp://${tftp-server}/MAC-${mac:hexraw}.ipxe || 
+chain --autofree tftp://${tftp-server}/menu.ipxe || echo ${TFTP_ERR} && goto menu
+
+:localboot
+echo ${fg_cya}Booting from local drive...${fg_whi}
+echo ${fg_gre}See you next time! - Trish 👋${fg_whi}
+exit
+
+:retry
+echo ${fg_yel}Let's try that again! 🔄${fg_whi}
+goto start
+
+:reboot
+echo ${fg_yel}Rebooting system...${fg_whi}
+echo ${fg_mag}Trish says: "Sometimes a fresh start is all you need!" ✨${fg_whi}
+reboot
+
+:debug
+echo ${fg_yel}Entering debug mode...${fg_whi}
+echo ${fg_gre}Type "exit" to return to menu${fg_whi}
+echo ${fg_mag}Pro tip from Trish: "help" shows available commands! 📚${fg_whi}
+shell
+goto failsafe

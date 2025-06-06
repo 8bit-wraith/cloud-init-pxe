@@ -1,0 +1,65 @@
+#cloud-config
+# Cloud-Init-PXE: Media Center Configuration
+# "Fresh OS every boot - no viruses, no cruft!" - Trish 🎬
+
+hostname: media-center
+manage_etc_hosts: true
+
+# Create media user
+users:
+  - name: media
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: [audio, video, plugdev]
+    
+# Install media center packages
+packages:
+  - kodi
+  - vlc
+  - ffmpeg
+  - pulseaudio
+  - bluetooth
+  - samba
+  - nfs-common
+
+# Auto-start Kodi on boot
+write_files:
+  - path: /etc/systemd/system/kodi.service
+    content: |
+      [Unit]
+      Description=Kodi Media Center
+      After=graphical.target
+      
+      [Service]
+      User=media
+      Group=media
+      Type=simple
+      ExecStart=/usr/bin/kodi --standalone
+      Restart=always
+      RestartSec=10
+      
+      [Install]
+      WantedBy=default.target
+      
+  - path: /home/media/.kodi/userdata/sources.xml
+    content: |
+      <sources>
+        <video>
+          <source>
+            <name>Network Media</name>
+            <path>smb://nas.local/media/</path>
+          </source>
+        </video>
+      </sources>
+
+# Enable services
+runcmd:
+  - systemctl enable kodi.service
+  - systemctl start kodi.service
+  - echo "Media center ready! No viruses, fresh every boot!" > /etc/motd
+
+# Mount network storage (stateless - config only)
+mounts:
+  - [nas.local:/media, /mnt/media, nfs, "defaults,noatime", "0", "0"]
+
+final_message: "Media Center ready! Kodi starting on display... 🎬"

@@ -1,0 +1,99 @@
+#cloud-config
+# Cloud-Init-PXE: Gaming Station
+# "Fresh drivers, optimal performance, every boot!" - Trish 🎮
+
+hostname: gaming-station
+manage_etc_hosts: true
+
+# Gaming user with performance settings
+users:
+  - name: gamer
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: [audio, video, input, gamemode]
+    
+# Gaming-optimized packages
+packages:
+  - steam
+  - lutris
+  - gamemode
+  - mangohud
+  - mesa-vulkan-drivers
+  - nvidia-driver-535  # Latest NVIDIA drivers
+  - cpu-freq-utils
+  - earlyoom  # Prevent OOM lockups
+
+write_files:
+  # Performance governor
+  - path: /etc/systemd/system/gaming-performance.service
+    content: |
+      [Unit]
+      Description=Gaming Performance Mode
+      After=multi-user.target
+      
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/bin/cpupower frequency-set -g performance
+      ExecStart=/usr/bin/nvidia-smi -pm 1
+      ExecStart=/usr/bin/nvidia-smi -pl 350
+      RemainAfterExit=yes
+      
+      [Install]
+      WantedBy=multi-user.target
+      
+  # Steam auto-login (stateless)
+  - path: /home/gamer/.config/autostart/steam.desktop
+    content: |
+      [Desktop Entry]
+      Type=Application
+      Name=Steam
+      Exec=steam -silent
+      Hidden=false
+      NoDisplay=false
+      X-GNOME-Autostart-enabled=true
+      
+  # Game library mounts
+  - path: /etc/systemd/system/game-library.mount
+    content: |
+      [Unit]
+      Description=Network Game Library
+      After=network-online.target
+      
+      [Mount]
+      What=//nas.local/games
+      Where=/mnt/games
+      Type=cifs
+      Options=guest,uid=1000,gid=1000,iocharset=utf8
+      
+      [Install]
+      WantedBy=multi-user.target
+
+# Gaming optimizations
+bootcmd:
+  - echo 'vm.swappiness=10' >> /etc/sysctl.conf
+  - echo 'vm.vfs_cache_pressure=50' >> /etc/sysctl.conf
+
+runcmd:
+  # Enable gaming performance
+  - systemctl enable gaming-performance.service
+  - systemctl enable game-library.mount
+  
+  # Configure GameMode
+  - echo 'gpu_device=0' >> /etc/gamemode.ini
+  - echo 'apply_gpu_optimisations=accept-responsibility' >> /etc/gamemode.ini
+  
+  # Set up earlyoom for better gaming stability
+  - systemctl enable earlyoom
+  - sed -i 's/EARLYOOM_ARGS="/EARLYOOM_ARGS="-r 60 /' /etc/default/earlyoom
+  
+  # Message of the day
+  - |
+    cat > /etc/motd << EOF
+    🎮 Gaming Station Ready! 🎮
+    - Fresh NVIDIA drivers loaded
+    - Performance mode activated  
+    - No bloatware, no miners!
+    - Trish says: "Game on!"
+    EOF
+
+final_message: "Gaming Station ready! Optimal performance, every boot! 🎮"

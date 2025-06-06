@@ -1,0 +1,82 @@
+---
+
+# Cloud-Init-PXE Custom Build Configuration
+# "Making boot intelligent since 2025!" - Trish 🌟
+
+# Core build settings
+generate_menus: true
+generate_disks: true
+generate_checksums: true
+generate_local_vars: true
+generate_signatures: false  # We'll enable this once we have certs
+ipxe_branch: master
+make_num_jobs: 4
+
+# Cloud-Init-PXE Branding
+site_name: cloud-init-pxe.com
+boot_domain: localhost:8484  # For local testing
+boot_version: "3.0-AI"
+
+# Enable all boot protocols
+bootloader_tftp_enabled: true
+bootloader_https_enabled: true
+bootloader_http_enabled: true
+
+# Custom bootloader filename (replaces netboot.xyz)
+bootloader_filename: cloud-init-pxe
+
+# Build all architectures
+generate_disks_arm: true
+generate_disks_hybrid: true
+generate_disks_linux: true
+generate_disks_rpi: true
+generate_disks_legacy: true
+generate_disks_efi: true
+
+# AI-Enhanced Early Menu
+early_menu_enabled: true
+early_menu_contents: |
+  ### Cloud-Init-PXE AI Boot System ###
+  ### "Intelligence from the first byte!" ###
+  console --x 1024 --y 768
+  cpair --foreground 2 --background 0 2
+  cpair --foreground 7 --background 9 0
+  echo
+  echo ${bold}${fg_cya}Cloud-Init-PXE${fg_whi} - AI-Enhanced Boot System${boldoff}
+  echo ${fg_gre}Powered by Modern Intelligence${fg_whi}
+  echo
+
+# Custom menu additions for AI features
+custom_generate_menus: true
+custom_templates_dir: "{{ playbook_dir }}/custom-templates"
+
+# Disable netboot.xyz references
+cloudinitpxecom_root: "/var/www/html"
+
+# Certificate settings (for future use)
+cert_dir: "{{ playbook_dir }}/certs"
+generate_signatures: false
+sigs_enabled: false
+
+# Release overrides - customize OS options
+release_overrides:
+  ubuntu:
+    name: "Ubuntu with Cloud-Init"
+    enabled: true
+  debian:
+    name: "Debian with Cloud-Init"
+    enabled: true
+  
+# Utilities overrides
+utilitiesefi_overrides:
+  ai_assistant:
+    name: "AI Boot Assistant"
+    enabled: true
+    kernel: "ai-assistant.efi"
+    
+# Custom iPXE build options
+ipxe_build_options:
+  - "EMBED={{ bootloader_filename }}"
+  - "TRUST={{ trust_files }}"
+  - "BANNER_TIMEOUT=5"
+  - "KEYBOARD_MAP=us"
